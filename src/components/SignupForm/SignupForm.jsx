@@ -31,9 +31,6 @@ const SignupForm = () => {
         authService
             .signup(signupData)
             .then(() => {
-                console.log('hhhhhhhiiiiii', signupData)
-            })
-            .then(() => {
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
                 navigate('/')
