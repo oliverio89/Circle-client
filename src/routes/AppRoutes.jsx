@@ -17,8 +17,6 @@ const AppRoutes = () => {
             <Route path="/*" element={<h1>404</h1>} />
             <Route path="/registro" element={<SignupPage />} />
             {/* <Route path="/registro" element={<p>HIIIII</p>} /> */}
-
-
         </Routes>
     )
 }
