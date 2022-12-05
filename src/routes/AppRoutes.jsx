@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import SignupPage from './../pages/SignupPage/SignupPage'
 
 
 
@@ -14,6 +15,8 @@ const AppRoutes = () => {
             <Route path="/acceder" element={<p>perfil</p>} />
             <Route path="/perfil" element={<p>perfil</p>} />
             <Route path="/*" element={<h1>404</h1>} />
+            <Route path="/registro" element={<SignupPage />} />
+            {/* <Route path="/registro" element={<p>HIIIII</p>} /> */}
         </Routes>
     )
 }
