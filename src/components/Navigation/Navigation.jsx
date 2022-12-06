@@ -8,12 +8,13 @@ import Modal from '../Modal/Modal'
 import SignupForm from '../SignupForm/SignupForm';
 
 // import './Navigation.css'
-// import { useContext } from 'react'
-// import { AuthContext } from '../../contexts/auth.context'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/auth.context';
+
 
 const Navigation = () => {
 
-    // const { user, logoutUser } = useContext(AuthContext)
+    const { user, logoutUser } = useContext(AuthContext)
 
 
     // configuracion de Modal
@@ -45,6 +46,8 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
+
+                        <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
                         <Link to="/post">
                             <Nav.Link as="div">Muro de publicaciónes</Nav.Link>
                         </Link>
@@ -58,26 +61,24 @@ const Navigation = () => {
                             <Nav.Link as="div">Sobre Nosotros</Nav.Link>
                         </Link>
 
-                        {/* {user ?
+                        {user ?
                             <>
                                 <Nav.Link as="div" onClick={logoutUser}>Cerrar sesión</Nav.Link>
 
                             </>
                             :
-                            <> */}
+                            <>
+                                <Link to="/registro">
+                                    <Nav.Link as="div">Registro</Nav.Link>
+                                </Link>
+                                <Link to="/acceder">
+                                    <Nav.Link as="div">Acceder</Nav.Link>
+                                </Link>
 
-                        <Link to="/registro">
-                            <Nav.Link as="div">Registro</Nav.Link>
-                        </Link>
-                        <Link to="/acceder">
-                            <Nav.Link as="div">Acceder</Nav.Link>
-                        </Link>
 
-                        {/* 
                             </>
-                        } */}
+                        }
 
-                        {/* <Nav.Link as="div">¡Hola, {!user ? 'invitad@' : user.username}!</Nav.Link> */}
 
                     </Nav>
                 </Navbar.Collapse>
