@@ -1,5 +1,12 @@
 import { Nav, Container, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
+
+// configurar Modal
+import React, { useState } from 'react';
+import Modal from '../Modal/Modal'
+import SignupForm from '../SignupForm/SignupForm';
+
 // import './Navigation.css'
 // import { useContext } from 'react'
 // import { AuthContext } from '../../contexts/auth.context'
@@ -8,9 +15,30 @@ const Navigation = () => {
 
     // const { user, logoutUser } = useContext(AuthContext)
 
+
+    // configuracion de Modal
+    const [active, setActive] = useState(false)
+    const toggle = () => {
+        setActive(!active)
+    }
+
+
+
     return (
         <Navbar bg="dark" expand="md" variant="dark" className="mb-5">
             <Container>
+                {/* configurar Modal */}
+                <button style={{
+                    position: 'absolute',
+                    top: '50%',
+                    padding: 10,
+                }} onClick={toggle}>Registro</button>
+                <Modal active={active} toggle={toggle}>
+                    <SignupForm />
+                </Modal>
+
+
+
                 <Link to="/">
                     <Navbar.Brand as="div"> Circle </Navbar.Brand>
                 </Link>
@@ -37,6 +65,7 @@ const Navigation = () => {
                             </>
                             :
                             <> */}
+
                         <Link to="/registro">
                             <Nav.Link as="div">Registro</Nav.Link>
                         </Link>
