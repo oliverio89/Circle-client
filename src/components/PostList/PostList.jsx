@@ -1,8 +1,9 @@
 import { Col, Row } from "react-bootstrap"
-import PostCard from "../CoasterCard/CoasterCard"
+import PostCard from "../PostCard/PostCard"
 
 const PostList = ({ posts }) => {
 
+    console.log(posts)
     return (
         <Row>
             {posts.map(elm => {
