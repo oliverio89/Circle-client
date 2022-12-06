@@ -27,6 +27,7 @@ const Navigation = () => {
                     <Nav className="me-auto">
 
                         <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
+
                         <Link to="/post">
                             <Nav.Link as="div">Muro de publicaciónes</Nav.Link>
                         </Link>
