@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { MessageContext } from './../../contexts/userMessage.context'
 
 
-const SignupForm = () => {
+const SignupForm = ({ fireFinalActions }) => {
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -36,6 +36,7 @@ const SignupForm = () => {
             .then(() => {
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
+                fireFinalActions()
                 navigate('/acceder')
             })
             .catch(err => console.log(err))
