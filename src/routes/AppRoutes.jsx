@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import LoginPage from "../pages/SignupPage/LoginPage/LoginPage"
 import SignupPage from './../pages/SignupPage/SignupPage'
-import PostListPage from './../pages/post/postPage'
+import PostListPage from '../pages/PostPage/PostPage'
 
 
 
@@ -18,7 +18,6 @@ const AppRoutes = () => {
             <Route path="/acceder" element={<LoginPage />} />
             <Route path="/*" element={<h1>404</h1>} />
             <Route path="/registro" element={<SignupPage />} />
-            {/* <Route path="/registro" element={<p>HIIIII</p>} /> */}
         </Routes>
     )
 }

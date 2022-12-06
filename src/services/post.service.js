@@ -29,7 +29,7 @@ class PostService {
         return this.api.get(`/getOnePost/${post_id}`)
     }
 
-    savePOst(postData) {
+    savePost(postData) {
         return this.api.post('/savePost', postData)
     }
 }
