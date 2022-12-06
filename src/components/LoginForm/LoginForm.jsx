@@ -1,9 +1,8 @@
 import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-// import { AuthContext } from "../../contexts/auth.context"
-// import { MessageContext } from "../../contexts/userMessage.context"
-// import authService from "../../services/auth.service"
+import { AuthContext } from "../../contexts/auth.context"
+import authService from "../../services/auth.service"
 
 
 const LoginForm = () => {
@@ -19,24 +18,24 @@ const LoginForm = () => {
     }
 
     const navigate = useNavigate()
-    // const { storeToken, authenticateUser } = useContext(AuthContext)
-    // const { setShowToast, setToastMessage } = useContext(MessageContext)
+    const { storeToken, authenticateUser } = useContext(AuthContext)
+
+
 
     const handleSubmit = e => {
 
         e.preventDefault()
 
-        // authService
-        //     .login(signupData)
-        //     .then(({ data }) => {
-        //         const tokenFromServer = data.authToken
-        //         storeToken(tokenFromServer)
-        //         authenticateUser()
-        //         setShowToast(true)
-        //         setToastMessage('Sesión iniciada')
-        //         navigate('/galeria')
-        //     })
-        //     .catch(err => console.log(err))
+        authService
+            .login(signupData)
+            .then(({ data }) => {
+                const tokenFromServer = data.authToken
+                console.log('entro aaquiiii??', tokenFromServer)
+                storeToken(tokenFromServer)
+                authenticateUser()
+                navigate('/post')
+            })
+            .catch(err => console.log(err))
     }
 
     const { password, email } = signupData
