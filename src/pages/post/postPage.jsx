@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react"
-import PostList from "../../components/CoastersList/CoastersList"
+import PostList from "../../components/PostList/PostList"
 import postService from "../../services/post.service"
 import { Container, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
 
-const CoastersListPage = () => {
+const PostListPage = () => {
 
-    const [posts, setPost] = useState()
+    const [posts, setPost] = useState([])
 
     const loadPost = () => {
         postService
@@ -47,4 +47,4 @@ const CoastersListPage = () => {
     )
 }
 
-export default CoastersListPage
+export default PostListPage

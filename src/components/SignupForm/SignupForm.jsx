@@ -36,7 +36,7 @@ const SignupForm = () => {
             .then(() => {
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
-                navigate('/')
+                navigate('/acceder')
             })
             .catch(err => console.log(err))
     }
@@ -51,13 +51,13 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3" controlId="username">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" value={username} onChange={handleInputChange} name="username" />
+                <Form.Control type="text" minLength={2} value={username} onChange={handleInputChange} name="username" />
             </Form.Group>
 
 
             <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
+                <Form.Control type="password" minLength={3} value={password} onChange={handleInputChange} name="password" />
             </Form.Group>
 
 
@@ -66,17 +66,17 @@ const SignupForm = () => {
                 <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="email">
+            <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" value={name} onChange={handleInputChange} name="name" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="email">
+            <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Image</Form.Label>
-                <Form.Control type="text" value={imageUrl} onChange={handleInputChange} name="imageUrl" />
+                <Form.Control type="text" value={imageUrl === "" ? undefined : imageUrl} onChange={handleInputChange} name="imageUrl" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="email">
+            <Form.Group className="mb-3" controlId="bio">
                 <Form.Label>Bio</Form.Label>
                 <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
