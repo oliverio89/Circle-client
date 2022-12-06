@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import LoginPage from "../pages/LoginPage/LoginPage"
 import SignupPage from './../pages/SignupPage/SignupPage'
-import PostListPage from './../pages/post/postPage'
+import PostListPage from './../pages/PostPage/PostPage'
 import PrivateRoute from "./PrivateRoute"
 
 
