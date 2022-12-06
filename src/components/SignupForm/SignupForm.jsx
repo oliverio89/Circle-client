@@ -12,7 +12,10 @@ const SignupForm = () => {
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
-        password: ''
+        password: '',
+        name: '',
+        imageUrl: '',
+        bio: ''
     })
 
     const handleInputChange = e => {
@@ -40,14 +43,14 @@ const SignupForm = () => {
 
 
 
-    const { username, password, email } = signupData
+    const { username, password, email, name, imageUrl, bio } = signupData
 
     return (
 
         <Form onSubmit={handleSubmit}>
 
             <Form.Group className="mb-3" controlId="username">
-                <Form.Label>Nombre de usuario</Form.Label>
+                <Form.Label>Username</Form.Label>
                 <Form.Control type="text" value={username} onChange={handleInputChange} name="username" />
             </Form.Group>
 
@@ -62,6 +65,22 @@ const SignupForm = () => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
             </Form.Group>
+
+            <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" value={name} onChange={handleInputChange} name="name" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Image</Form.Label>
+                <Form.Control type="text" value={imageUrl} onChange={handleInputChange} name="imageUrl" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Bio</Form.Label>
+                <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
+            </Form.Group>
+
 
 
             <div className="d-grid">
