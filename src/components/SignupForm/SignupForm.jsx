@@ -81,8 +81,6 @@ const SignupForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
 
-
-
             <div className="d-grid">
                 <Button variant="dark" type="submit">Registrarme</Button>
             </div>
