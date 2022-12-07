@@ -37,7 +37,7 @@ const SignupForm = ({ fireFinalActions }) => {
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
                 fireFinalActions()
-                navigate('/acceder')
+                navigate('/')
             })
             .catch(err => console.log(err))
     }
@@ -54,7 +54,6 @@ const SignupForm = ({ fireFinalActions }) => {
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" minLength={2} value={username} onChange={handleInputChange} name="username" />
             </Form.Group>
-
 
             <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Contraseña</Form.Label>

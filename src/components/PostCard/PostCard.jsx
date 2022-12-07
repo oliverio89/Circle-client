@@ -12,7 +12,7 @@ function PostCard({ title, imageUrl, _id }) {
                 <Card.Title>{title}</Card.Title>
                 <Link to={`/detalles/${_id}`}>
                     <div className="d-grid">
-                        <Button variant="dark" size="sm">Comentar</Button>
+                        <Button variant="dark" size="sm">Detalles</Button>
                     </div>
                 </Link>
             </Card.Body>

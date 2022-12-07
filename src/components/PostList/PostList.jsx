@@ -3,7 +3,6 @@ import PostCard from "../PostCard/PostCard"
 
 const PostList = ({ posts }) => {
 
-    console.log(posts)
     return (
         <Row>
             {posts.map(elm => {
