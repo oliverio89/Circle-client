@@ -33,7 +33,9 @@ const SignupForm = ({ fireFinalActions }) => {
 
         authService
             .signup(signupData)
-            .then(() => {
+            .then((res) => {
+                console.log(res, 'eiiiiiiiiiiiiiiiiiiiiii')
+
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
                 fireFinalActions()
