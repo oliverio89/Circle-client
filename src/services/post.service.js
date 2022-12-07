@@ -5,7 +5,7 @@ class PostService {
     constructor() {
 
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/posts`
+            baseURL: `${process.env.REACT_APP_API_URL}/post`
         })
 
         this.api.interceptors.request.use((config) => {

@@ -34,7 +34,7 @@ const PostListPage = () => {
 
     const fireFinalActions = () => {
         setShowToast(true)
-        setToastMessage('Montaña creada en la BBDD')
+        setToastMessage('Post creado en la BBDD')
         loadPost()
         closeModal()
     }
