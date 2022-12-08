@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import authService from "../../services/auth.service"
 import { MessageContext } from './../../contexts/userMessage.context'
-import ErrorMessage from "../ErrorMessage/ErrorMessage"
-
 
 const LoginForm = () => {
 
@@ -22,8 +20,6 @@ const LoginForm = () => {
     const navigate = useNavigate()
     const { storeToken, authenticateUser } = useContext(AuthContext)
     const { setShowToast, setToastMessage } = useContext(MessageContext)
-    const [errors, setErrors] = useState([])
-
 
     const handleSubmit = e => {
 
@@ -46,7 +42,6 @@ const LoginForm = () => {
 
     return (
 
-
         <Form onSubmit={handleSubmit}>
 
             <Form.Group className="mb-3" controlId="email">
@@ -58,7 +53,6 @@ const LoginForm = () => {
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
             </Form.Group>
-            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
             <div className="d-grid">
                 <Button variant="dark" type="submit">Acceder</Button>
             </div>

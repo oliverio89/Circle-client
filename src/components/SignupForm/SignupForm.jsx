@@ -33,11 +33,13 @@ const SignupForm = ({ fireFinalActions }) => {
 
         authService
             .signup(signupData)
-            .then(() => {
+            .then((res) => {
+                console.log(res, 'eiiiiiiiiiiiiiiiiiiiiii')
+
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
                 fireFinalActions()
-                navigate('/acceder')
+                navigate('/')
             })
             .catch(err => console.log(err))
     }
@@ -54,7 +56,6 @@ const SignupForm = ({ fireFinalActions }) => {
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" minLength={2} value={username} onChange={handleInputChange} name="username" />
             </Form.Group>
-
 
             <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Contraseña</Form.Label>
@@ -81,8 +82,6 @@ const SignupForm = ({ fireFinalActions }) => {
                 <Form.Label>Bio</Form.Label>
                 <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
-
-
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Registrarme</Button>

@@ -25,6 +25,7 @@ const AppRoutes = () => {
                 <Route path="/detalles/:post_id" element={<PostDetailsPage />} />
                 <Route path="/profile" element={<p>Perfil</p>} />
                 <Route path="/admin" element={<p>Panel de admin</p>} />
+                <Route path="/post" element={<PostListPage />} />
             </Route>
 
 
