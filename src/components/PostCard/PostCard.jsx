@@ -1,17 +1,25 @@
+import { Button, ButtonGroup, Card, Modal } from 'react-bootstrap';
 import './PostCard.css'
-import { Button, ButtonGroup, Card } from 'react-bootstrap';
 
 import { AuthContext } from './../../contexts/auth.context'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 
 import { Link } from 'react-router-dom'
 import postService from '../../services/post.service';
+import EditPostForm from '../NewPostForm/NewPostForm';
+
+
 
 function PostCard(props) {
 
     const { title, imageUrl, _id, owner, fireFinalActions } = props
     const { user } = useContext(AuthContext)
+
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
 
 
 
@@ -47,8 +55,17 @@ function PostCard(props) {
                                     <Link to={`/detalles/${_id}`}>
                                         <Button variant="dark" size="sm">Ver detalles</Button>
                                     </Link>
+                                    <Button onClick={openModal} variant="dark" size="sm">Editar Post</Button>
+                                    <Modal show={showModal} onHide={closeModal}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Editar Post</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <EditPostForm fireFinalActions={fireFinalActions} />
+                                        </Modal.Body>
+                                    </Modal>
+                                    <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>
                                 </ButtonGroup>
-                                <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>
                             </div>
 
                         </>

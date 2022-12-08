@@ -39,9 +39,6 @@ const PostListPage = () => {
         closeModal()
     }
 
-
-
-
     useEffect(() => {
         loadPost()
     }, [])

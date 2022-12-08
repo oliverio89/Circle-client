@@ -3,7 +3,7 @@ import { Form, Button, } from "react-bootstrap"
 import postService from "../../services/post.service"
 import uploadServices from "../../services/upload.service"
 
-const EditPostForm = ({ fireFinalActions }) => {
+const NewPostForm = ({ fireFinalActions }) => {
 
     const [postData, setPostData] = useState({
         title: '',
@@ -70,4 +70,4 @@ const EditPostForm = ({ fireFinalActions }) => {
     )
 }
 
-export default EditPostForm
+export default NewPostForm
