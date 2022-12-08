@@ -3,20 +3,35 @@ import { Form, Button, } from "react-bootstrap"
 import postService from "../../services/post.service"
 import uploadServices from "../../services/upload.service"
 
-const NewPostForm = ({ fireFinalActions }) => {
+const EditPostForm = ({ closeModal, title, description, imageUrl, id, loadPosts }) => {
 
-    const [postData, setPostData] = useState({
-        title: '',
-        description: '',
-        imageUrl: ''
+
+
+
+    const [postEditData, setPostEditData] = useState({
+        title: title,
+        description: description,
+        imageUrl: imageUrl,
+        id: id
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
 
+
+
     const handleInputChange = e => {
+
         const { name, value } = e.target
-        setPostData({ ...postData, [name]: value })
+
+        setPostEditData({ ...postEditData, [name]: value })
+        console.log(postEditData.id)
+
     }
+
+
+
+
+
 
     const handleFileUpload = e => {
 
@@ -28,34 +43,41 @@ const NewPostForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setPostData({ ...postData, imageUrl: res.data.cloudinary_url })
+                setPostEditData({ ...postEditData, imageUrl: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
             .catch(err => console.log(err))
     }
 
+
+
+    // con esto al pulsar el botón hace submit y se sube
     const handleFormSubmit = e => {
-
         e.preventDefault()
-
         postService
-            .savePost(postData)
-            .then(() => fireFinalActions())
+            .editPost(postEditData)
+            .then(() => {
+                loadPosts()
+                closeModal()
+            })
             .catch(err => console.log(err))
     }
 
-    const { title, description, imageUrl } = postData
+
+
+
+
 
     return (
         <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Titulo</Form.Label>
-                <Form.Control type="text" value={title} onChange={handleInputChange} name="title" />
+                <Form.Control type="text" value={postEditData.title} onChange={handleInputChange} name="title" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
+                <Form.Control type="text" value={postEditData.description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="image">
@@ -64,10 +86,10 @@ const NewPostForm = ({ fireFinalActions }) => {
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Post'}</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar Post'}</Button>
             </div>
         </Form>
     )
 }
 
-export default NewPostForm
+export default EditPostForm

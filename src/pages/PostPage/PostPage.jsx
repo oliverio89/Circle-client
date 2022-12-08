@@ -62,7 +62,7 @@ const PostListPage = () => {
                     <Modal.Title>Nuevo comentario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <NewPostForm fireFinalActions={fireFinalActions} />
+                    <NewPostForm closeModal={closeModal} loadPosts={loadPosts} />
                 </Modal.Body>
             </Modal>
         </>
