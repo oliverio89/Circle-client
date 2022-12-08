@@ -6,7 +6,7 @@ import PrivateRoute from "./PrivateRoute"
 import PostDetailsPage from "../pages/PostDetailsPage/PostDetailsPage"
 import AboutusPage from "../pages/AboutusPage/AboutusPage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
-
+import PanelAdminPage from "../pages/PanelAdminPage/PanelAdminPage"
 
 
 
@@ -22,10 +22,9 @@ const AppRoutes = () => {
             <Route path="/*" element={<h1>404</h1>} />
 
             <Route element={<PrivateRoute />}>
-                <Route path="/post" element={<PostListPage />} />
                 <Route path="/detalles/:post_id" element={<PostDetailsPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/admin" element={<p>Panel de admin</p>} />
+                <Route path="/admin" element={<PanelAdminPage />} />
                 <Route path="/post" element={<PostListPage />} />
             </Route>
 

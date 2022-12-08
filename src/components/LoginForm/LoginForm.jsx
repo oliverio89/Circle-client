@@ -5,7 +5,9 @@ import { AuthContext } from "../../contexts/auth.context"
 import authService from "../../services/auth.service"
 import { MessageContext } from './../../contexts/userMessage.context'
 
-const LoginForm = () => {
+
+const LoginForm = ({ fireFinalActions }) => {
+
 
     const [signupData, setSignupData] = useState({
         email: '',
@@ -28,12 +30,13 @@ const LoginForm = () => {
         authService
             .login(signupData)
             .then(({ data }) => {
-                const tokenFromServer = data.authToken
                 setShowToast(true)
                 setToastMessage('Sesión iniciada')
+                const tokenFromServer = data.authToken
                 storeToken(tokenFromServer)
                 authenticateUser()
-                navigate('/post')
+                fireFinalActions()
+
             })
             .catch(err => console.log(err))
     }

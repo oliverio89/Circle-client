@@ -1,4 +1,4 @@
-// configurar Modal
+
 import { Nav, Container, Navbar, Button, Modal } from 'react-bootstrap'
 // import MessageContext from '../UserMessage/UserMessage'
 // import authService from '../../services/auth.service'
@@ -8,9 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { AuthContext } from '../../contexts/auth.context';
 
-
 const Navigation = () => {
-
 
     const { user, logoutUser } = useContext(AuthContext)
 
@@ -26,28 +24,32 @@ const Navigation = () => {
     const LogIn = () => {
         setShowForm('login')
         setShowModal(true)
-    }
-    const fireFinalActions = () => {
-        closeModal()
 
     }
-
     const Navigate = useNavigate()
+
+    const fireFinalActions = () => {
+        console.log('Estoy llegando')
+        Navigate('/post')
+        closeModal()
+    }
+
+
+
     const logout = () => {
         logoutUser()
         Navigate('/')
     }
 
-
-
-
     return (
         <Navbar bg="dark" expand="md" variant="dark" className="mb-5">
             <Container>
 
-
                 <Link to="/">
                     <Navbar.Brand as="div"> Circle </Navbar.Brand>
+                </Link>
+                <Link to="/aboutus">
+                    <Nav.Link as="div">About Us</Nav.Link>
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -86,9 +88,6 @@ const Navigation = () => {
                                     </Modal.Body>
                                 </Modal>
 
-                                <Link to="/aboutus">
-                                    <Nav.Link as="div">About Us</Nav.Link>
-                                </Link>
                             </>
                         }
 
