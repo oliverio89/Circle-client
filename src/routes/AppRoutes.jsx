@@ -5,6 +5,7 @@ import PostListPage from '../pages/PostPage/PostPage'
 import PrivateRoute from "./PrivateRoute"
 import PostDetailsPage from "../pages/PostDetailsPage/PostDetailsPage"
 import AboutusPage from "../pages/AboutusPage/AboutusPage"
+import ProfilePage from "../pages/ProfilePage/ProfilePage"
 
 
 
@@ -23,7 +24,7 @@ const AppRoutes = () => {
             <Route element={<PrivateRoute />}>
                 <Route path="/post" element={<PostListPage />} />
                 <Route path="/detalles/:post_id" element={<PostDetailsPage />} />
-                <Route path="/profile" element={<p>Perfil</p>} />
+                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/admin" element={<p>Panel de admin</p>} />
                 <Route path="/post" element={<PostListPage />} />
             </Route>
