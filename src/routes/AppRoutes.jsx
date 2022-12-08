@@ -19,7 +19,6 @@ const AppRoutes = () => {
             <Route path="/acceder" element={<LoginPage />} />
             <Route path="/registro" element={<SignupPage />} />
             <Route path="/aboutus" element={<AboutusPage />} />
-            <Route path="/*" element={<h1>404</h1>} />
 
             <Route element={<PrivateRoute />}>
                 <Route path="/detalles/:post_id" element={<PostDetailsPage />} />
@@ -28,6 +27,7 @@ const AppRoutes = () => {
                 <Route path="/post" element={<PostListPage />} />
             </Route>
 
+            <Route path="*" element={<h1>404</h1>} />
 
         </Routes>
     )

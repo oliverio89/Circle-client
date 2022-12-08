@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap"
 import PostCard from "../PostCard/PostCard"
 
-const PostList = ({ posts, fireFinalActions }) => {
+const PostList = ({ posts, loadPosts }) => {
 
 
     return (
@@ -10,7 +10,7 @@ const PostList = ({ posts, fireFinalActions }) => {
                 return (
                     <Col sm={{ span: 4 }} key={elm._id} >
 
-                        <PostCard  {...elm} fireFinalActions={fireFinalActions} />
+                        <PostCard  {...elm} loadPosts={loadPosts} />
                     </Col>
                 )
             })}

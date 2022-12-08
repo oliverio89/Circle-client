@@ -3,7 +3,7 @@ import { Form, Button, } from "react-bootstrap"
 import postService from "../../services/post.service"
 import uploadServices from "../../services/upload.service"
 
-const EditPostForm = ({ fireFinalActions }) => {
+const EditPostForm = ({ closeModal }) => {
 
     const [postData, setPostData] = useState({
         title: '',
@@ -40,7 +40,7 @@ const EditPostForm = ({ fireFinalActions }) => {
 
         postService
             .savePost(postData)
-            .then(() => fireFinalActions())
+            .then(() => closeModal())
             .catch(err => console.log(err))
     }
 

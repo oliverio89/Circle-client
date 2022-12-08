@@ -17,7 +17,7 @@ const PostDetailsPage = () => {
             .catch(err => console.error(err))
     }, [])
 
-
+    // decostruir
 
     return (
 

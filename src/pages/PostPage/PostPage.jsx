@@ -13,7 +13,7 @@ import NewPostForm from './../../components/NewPostForm/NewPostForm'
 
 const PostListPage = () => {
 
-    const [posts, setPost] = useState(null)
+    const [posts, setPosts] = useState(null)
 
     const [showModal, setShowModal] = useState(false)
 
@@ -24,10 +24,10 @@ const PostListPage = () => {
 
     const { user } = useContext(AuthContext)
 
-    const loadPost = () => {
+    const loadPosts = () => {
         postService
             .getPost()
-            .then(({ data }) => setPost(data))
+            .then(({ data }) => setPosts(data))
             .catch(err => console.log(err))
     }
 
@@ -35,12 +35,12 @@ const PostListPage = () => {
     const fireFinalActions = () => {
         setShowToast(true)
         setToastMessage('Post creado en la BBDD')
-        loadPost()
+        loadPosts()
         closeModal()
     }
 
     useEffect(() => {
-        loadPost()
+        loadPosts()
     }, [])
 
     return (
@@ -50,12 +50,13 @@ const PostListPage = () => {
                 <h1>Muro de comentarios</h1>
                 {user && <Button onClick={openModal} variant="dark" size="sm">Crear un nuevo Post</Button>}
                 <hr />
-                {!posts ? <Loader /> : <PostList posts={posts} fireFinalActions={fireFinalActions} />}
+                {!posts ? <Loader /> : <PostList posts={posts} loadPosts={loadPosts} />}
                 <hr />
                 <Link to="/">
                     <Button variant="dark">Volver a inicio</Button>
                 </Link>
             </Container>
+
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Nuevo comentario</Modal.Title>
@@ -64,10 +65,7 @@ const PostListPage = () => {
                     <NewPostForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
             </Modal>
-
-
         </>
-
 
     )
 }

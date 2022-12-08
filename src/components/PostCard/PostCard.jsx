@@ -11,9 +11,8 @@ import EditPostForm from '../NewPostForm/NewPostForm';
 
 
 
-function PostCard(props) {
+function PostCard({ title, imageUrl, _id, owner, loadPosts }) {
 
-    const { title, imageUrl, _id, owner, fireFinalActions } = props
     const { user } = useContext(AuthContext)
 
     const [showModal, setShowModal] = useState(false)
@@ -27,7 +26,7 @@ function PostCard(props) {
 
         postService
             .deletePost(post_id)
-            .then(() => fireFinalActions())
+            .then(() => loadPosts())
             .catch(err => console.error(err))
 
     }
@@ -61,7 +60,7 @@ function PostCard(props) {
                                             <Modal.Title>Editar Post</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <EditPostForm fireFinalActions={fireFinalActions} />
+                                            <EditPostForm closeModal={closeModal} />
                                         </Modal.Body>
                                     </Modal>
                                     <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>
