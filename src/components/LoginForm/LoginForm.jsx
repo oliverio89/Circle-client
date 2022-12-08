@@ -3,6 +3,8 @@ import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import authService from "../../services/auth.service"
+import { MessageContext } from './../../contexts/userMessage.context'
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 const LoginForm = () => {
@@ -19,7 +21,8 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
     const { storeToken, authenticateUser } = useContext(AuthContext)
-
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
+    const [errors, setErrors] = useState([])
 
 
     const handleSubmit = e => {
@@ -30,12 +33,13 @@ const LoginForm = () => {
             .login(signupData)
             .then(({ data }) => {
                 const tokenFromServer = data.authToken
-                console.log('entro aaquiiii??', tokenFromServer)
+                setShowToast(true)
+                setToastMessage('Sesión iniciada')
                 storeToken(tokenFromServer)
                 authenticateUser()
                 navigate('/post')
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const { password, email } = signupData
@@ -54,7 +58,7 @@ const LoginForm = () => {
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
             </Form.Group>
-
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
             <div className="d-grid">
                 <Button variant="dark" type="submit">Acceder</Button>
             </div>

@@ -3,7 +3,7 @@ import { Nav, Container, Navbar, Button, Modal } from 'react-bootstrap'
 // import MessageContext from '../UserMessage/UserMessage'
 // import authService from '../../services/auth.service'
 import SignupForm from '../SignupForm/SignupForm'
-// import LoginForm from '../LoginForm/LoginForm'
+import LoginForm from '../LoginForm/LoginForm'
 
 
 
@@ -19,16 +19,26 @@ const Navigation = () => {
     // configurar modal
 
     const [showModal, setShowModal] = useState(false)
-
-    const openModal = () => setShowModal(true)
+    // const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
+    const [showForm, setShowForm] = useState('')
 
+
+    const SignUp = () => {
+        setShowForm('signup')
+        setShowModal(true)
+    }
+    const LogIn = () => {
+        setShowForm('login')
+        setShowModal(true)
+    }
 
 
     const fireFinalActions = () => {
         closeModal()
     }
+
 
 
 
@@ -44,37 +54,6 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
-
-
-
-
-                        <div>
-                            <Button onClick={openModal} variant="dark" size="sm">Registrar</Button>
-                            <Button onClick={openModal} variant="dark" size="sm">Acceder</Button>
-                        </div>
-                        <Modal show={showModal} onHide={closeModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Registrar</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <SignupForm fireFinalActions={fireFinalActions} />
-                            </Modal.Body>
-                        </Modal>
-
-                        {/* <Modal show={showModal} onHide={closeModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Acceder</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <LoginForm fireFinalActions={fireFinalActions} />
-                            </Modal.Body>
-                        </Modal> */}
-
-
-
-
-
-
                         {user ?
                             <>
                                 <Link to="/post">
@@ -94,18 +73,25 @@ const Navigation = () => {
                             </>
                             :
                             <>
-                                {/* hay que quitarlo para disenar un modal para ambos registrar y login */}
-                                <Link to="/registro">
-                                    <Nav.Link as="div">Registro</Nav.Link>
-                                </Link>
+                                <div>
+                                    <Button onClick={SignUp} variant="dark" size="sm">SignUp/login</Button>
+                                </div>
 
+                                <Modal show={showModal} onHide={closeModal}>
+                                    <div>
+                                        <Button onClick={SignUp} variant="dark" size="sm">SignUp</Button>
+                                        <Button onClick={LogIn} variant="dark" size="sm">LogIn</Button>
+                                    </div>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Welcome to Circle!</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
 
-                                <Link to="/acceder">
-                                    <Nav.Link as="div">Acceder</Nav.Link>
-                                </Link>
+                                        {showForm === 'signup' && <SignupForm fireFinalActions={fireFinalActions} />}
+                                        {showForm === 'login' && <LoginForm fireFinalActions={fireFinalActions} />}
 
-
-
+                                    </Modal.Body>
+                                </Modal>
                             </>
                         }
 
@@ -118,4 +104,3 @@ const Navigation = () => {
 }
 
 export default Navigation
-

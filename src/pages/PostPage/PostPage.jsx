@@ -34,7 +34,7 @@ const PostListPage = () => {
 
     const fireFinalActions = () => {
         setShowToast(true)
-        setToastMessage('Montaña creada en la BBDD')
+        setToastMessage('Post creado en la BBDD')
         loadPost()
         closeModal()
     }
@@ -53,7 +53,7 @@ const PostListPage = () => {
                 <h1>Muro de comentarios</h1>
                 {user && <Button onClick={openModal} variant="dark" size="sm">Crear un nuevo Post</Button>}
                 <hr />
-                {!posts ? <Loader /> : <PostList posts={posts} />}
+                {!posts ? <Loader /> : <PostList posts={posts} fireFinalActions={fireFinalActions} />}
                 <hr />
                 <Link to="/">
                     <Button variant="dark">Volver a inicio</Button>

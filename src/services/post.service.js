@@ -5,7 +5,7 @@ class PostService {
     constructor() {
 
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/posts`
+            baseURL: `${process.env.REACT_APP_API_URL}/post`
         })
 
         this.api.interceptors.request.use((config) => {
@@ -32,7 +32,12 @@ class PostService {
     savePost(postData) {
         return this.api.post('/savePost', postData)
     }
+
+    deletePost(post_id) {
+        return this.api.post(`/deletePost/${post_id}`)
+    }
 }
+
 
 const postService = new PostService()
 
