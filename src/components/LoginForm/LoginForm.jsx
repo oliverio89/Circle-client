@@ -35,7 +35,7 @@ const LoginForm = () => {
                 authenticateUser()
                 navigate('/post')
             })
-            .catch(err => setErrors(err.response.data.errorMessages))
+            .catch(err => console.log(err))
     }
 
     const { password, email } = signupData
