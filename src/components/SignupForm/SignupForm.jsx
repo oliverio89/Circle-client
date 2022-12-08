@@ -64,7 +64,7 @@ const SignupForm = ({ fireFinalActions }) => {
 
 
 
-    const { username, password, email, name, imageUrl, bio } = signupData
+    const { username, password, email, name, bio } = signupData
 
     return (
 
