@@ -1,32 +1,31 @@
 import Button from 'react-bootstrap/Button';
 import { Link, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import userService from "../../services/auth.service"
+import { AuthContext } from '../../contexts/auth.context';
+import { useContext } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 
-function Profile({ name, imageUrl, bio }) {
 
-    const [user, setUser] = useState()
+function Profile() {
 
-    const { user_id } = useParams()
-
-    useEffect(() => {
-        userService
-            .getOneUser(user_id)
-            .then(({ data }) => setUser(data))
-            .catch(err => console.error(err))
-    }, [])
+    const { user } = useContext(AuthContext)
 
     return (
-        <>
-            <p>{imageUrl}</p>
-            <p>{name}</p>
-            <p>{bio}</p>
-            <Link to={`/post`}>
-                <div className="d-grid">
-                    <Button variant="dark" size="sm">Volver a las Publicaciones</Button>
-                </div>
-            </Link>
-        </>
+        <Container>
+            <Row>
+                <Col md={{ span: 4 }}>
+                    <img src={user.imageUrl} style={{ width: '100%' }} />
+
+                    <p>Name: {user.name}</p>
+                    <p>Username: {user.username}</p>
+                    <p>Bio: {user.bio}</p>
+                </Col>
+                <Link to="/post">
+                    <Button as="div" variant="dark">Volver a las Publicaciones</Button>
+                </Link>
+            </Row>
+        </Container>
+
+
     );
 }
 
