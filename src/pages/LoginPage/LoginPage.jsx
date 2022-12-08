@@ -1,7 +1,14 @@
 import { Container, Row, Col } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import LoginForm from '../../components/LoginForm/LoginForm'
 const LoginPage = () => {
+
+    const navigate = useNavigate()
+
+    const fireFinalActions = () => {
+        navigate('/post')
+    }
 
     return (
 
@@ -15,7 +22,7 @@ const LoginPage = () => {
 
                     <hr />
 
-                    <LoginForm />
+                    <LoginForm fireFinalActions={fireFinalActions} />
 
                 </Col>
             </Row>

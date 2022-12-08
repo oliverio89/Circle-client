@@ -13,17 +13,20 @@ function Profile() {
         <Container>
             <Row>
                 <Col md={{ span: 4 }}>
-                    <img src={user.imageUrl} style={{ width: '100%' }} />
-
-                    <p>Name: {user.name}</p>
-                    <p>Username: {user.username}</p>
-                    <p>Bio: {user.bio}</p>
+                    <img src={user.imageUrl} style={{ width: '40%' }} />
                 </Col>
+                <Col>
+                    <p>{user.name}</p>
+                    <p>{user.bio}</p>
+                </Col>
+
+                <h1>Mis Publicaciones</h1>
+
                 <Link to="/post">
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                 </Link>
             </Row>
-        </Container>
+        </Container >
 
 
     );
