@@ -1,11 +1,10 @@
 import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.service"
-
 import { useNavigate } from 'react-router-dom'
-
 import { MessageContext } from './../../contexts/userMessage.context'
-
+// configurar forma de recargar fotos
+import uploadServices from "../../services/upload.service"
 
 const SignupForm = ({ fireFinalActions }) => {
 
@@ -17,6 +16,7 @@ const SignupForm = ({ fireFinalActions }) => {
         imageUrl: '',
         bio: ''
     })
+
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -44,9 +44,27 @@ const SignupForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
+    // configurar forma de recargar fotos
+    const [loadingImage, setLoadingImage] = useState(false)
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setSignupData({ ...signupData, imageUrl: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => console.log(err))
+    }
 
 
-    const { username, password, email, name, imageUrl, bio } = signupData
+
+    const { username, password, email, name, bio } = signupData
 
     return (
 
@@ -75,7 +93,7 @@ const SignupForm = ({ fireFinalActions }) => {
 
             <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Image</Form.Label>
-                <Form.Control type="text" value={imageUrl === "" ? undefined : imageUrl} onChange={handleInputChange} name="imageUrl" />
+                <Form.Control type="file" onChange={handleFileUpload} name="imageUrl" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="bio">
@@ -84,7 +102,7 @@ const SignupForm = ({ fireFinalActions }) => {
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit">Registrarme</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Registrar'}</Button>
             </div>
 
         </Form>
