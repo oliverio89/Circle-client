@@ -4,6 +4,7 @@ import SignupPage from './../pages/SignupPage/SignupPage'
 import PostListPage from '../pages/PostPage/PostPage'
 import PrivateRoute from "./PrivateRoute"
 import PostDetailsPage from "../pages/PostDetailsPage/PostDetailsPage"
+import AboutusPage from "./../pages/AboutusPage/AboutusPage"
 
 
 
@@ -15,7 +16,7 @@ const AppRoutes = () => {
         <Routes>
             <Route path="/" element={<p>Circle</p>} />
             <Route path="/post" element={<PostListPage />} />
-            <Route path="/aboutus" element={<p>Contacta con Nosotros</p>} />
+            <Route path="/aboutus" element={<AboutusPage />} />
             <Route path="/acceder" element={<LoginPage />} />
             <Route path="/*" element={<h1>404</h1>} />
             <Route path="/registro" element={<SignupPage />} />
