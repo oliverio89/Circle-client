@@ -33,12 +33,12 @@ class PostService {
         return this.api.post('/savePost', postData)
     }
 
-    editPost(post_id) {
-        return this.api.post(`/edit/${post_id}`)
+    editPost(palabra) {
+        return this.api.put(`/editPost/${palabra.id}`, palabra)
     }
 
     deletePost(post_id) {
-        return this.api.post(`/deletePost/${post_id}`)
+        return this.api.delete(`/deletePost/${post_id}`)
     }
 }
 

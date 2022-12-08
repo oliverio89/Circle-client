@@ -7,11 +7,11 @@ import { useContext, useState } from 'react';
 
 import { Link } from 'react-router-dom'
 import postService from '../../services/post.service';
-import EditPostForm from '../NewPostForm/NewPostForm';
+import EditPostForm from '../EditPostForm/EditPostForm';
 
 
 
-function PostCard({ title, imageUrl, _id, owner, loadPosts }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts }) {
 
     const { user } = useContext(AuthContext)
 
@@ -60,7 +60,7 @@ function PostCard({ title, imageUrl, _id, owner, loadPosts }) {
                                             <Modal.Title>Editar Post</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <EditPostForm closeModal={closeModal} />
+                                            <EditPostForm closeModal={closeModal} loadPosts={loadPosts} title={title} description={description} imageUrl={imageUrl} id={_id} />
                                         </Modal.Body>
                                     </Modal>
                                     <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>

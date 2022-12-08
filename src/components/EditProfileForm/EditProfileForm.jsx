@@ -1,37 +1,22 @@
 import { useState } from "react"
 import { Form, Button, } from "react-bootstrap"
-import postService from "../../services/post.service"
+import userService from "../../services/user.service"
 import uploadServices from "../../services/upload.service"
 
-const EditPostForm = ({ closeModal, title, description, imageUrl, id, loadPosts }) => {
+const EditProfileForm = ({ fireFinalActions }) => {
 
-
-
-
-    const [postEditData, setPostEditData] = useState({
-        title: title,
-        description: description,
-        imageUrl: imageUrl,
-        id: id
+    const [userData, setUserEditData] = useState({
+        name: { name },
+        bio: { bio },
+        imageUrl: { imageUrl }
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
 
-
-
     const handleInputChange = e => {
-
         const { name, value } = e.target
-
-        setPostEditData({ ...postEditData, [name]: value })
-        console.log(postEditData.id)
-
+        setUserEditData({ ...userData, [name]: value })
     }
-
-
-
-
-
 
     const handleFileUpload = e => {
 
@@ -43,41 +28,34 @@ const EditPostForm = ({ closeModal, title, description, imageUrl, id, loadPosts 
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setPostEditData({ ...postEditData, imageUrl: res.data.cloudinary_url })
+                setUserEditData({ ...userData, imageUrl: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
             .catch(err => console.log(err))
     }
 
-
-
-    // con esto al pulsar el botón hace submit y se sube
     const handleFormSubmit = e => {
+
         e.preventDefault()
-        postService
-            .editPost(postEditData)
-            .then(() => {
-                loadPosts()
-                closeModal()
-            })
+
+        userService
+            .editUser(userData)
+            .then(() => fireFinalActions())
             .catch(err => console.log(err))
     }
 
-
-
-
-
+    const { name, bio, imageUrl } = userData
 
     return (
         <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Titulo</Form.Label>
-                <Form.Control type="text" value={postEditData.title} onChange={handleInputChange} name="title" />
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" value={userData.name} onChange={handleInputChange} name="name" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="desc">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" value={postEditData.description} onChange={handleInputChange} name="description" />
+                <Form.Label>Bio</Form.Label>
+                <Form.Control type="text" value={userData.bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="image">
@@ -86,10 +64,10 @@ const EditPostForm = ({ closeModal, title, description, imageUrl, id, loadPosts 
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar Post'}</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Post'}</Button>
             </div>
         </Form>
     )
 }
 
-export default EditPostForm
+export default EditProfileForm
