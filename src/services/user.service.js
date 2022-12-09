@@ -21,7 +21,7 @@ class UserService {
     }
 
     addFriend(user_id) {
-        return this.api.post('/addFriend', user_id)
+        return this.api.post(`/addFriend/${user_id}`)
     }
 
     editUser(user_id) {

@@ -11,20 +11,22 @@ import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
 
 
 
-const addFriend = (user_id) => {
-    console.log('hiiiiii')
-    userService
-        .addFriend(user_id)
-        .then(() => console.log(user_id))
-        .catch(err => console.error(err))
-}
-
 
 
 function ProfilePage(name, bio, imageUrl, _id) {
 
+
     const navigate = useNavigate()
     const { user, logoutUser } = useContext(AuthContext)
+
+    const addFriend = (user_id) => {
+        console.log('hiiiiii', user_id)
+
+        userService
+            .addFriend(user_id)
+            .then()
+            .catch(err => console.log(err))
+    }
 
     const deleteUser = (user_id) => {
 
@@ -54,7 +56,7 @@ function ProfilePage(name, bio, imageUrl, _id) {
 
                 <h4>Amigos</h4>
 
-                <Button as="div" variant="dark" onClick={addFriend}>Agregar Amigo</Button>
+                <Button as="div" variant="dark" onClick={() => addFriend(user._id)}>Agregar Amigo</Button>
 
                 <Col>
                     <h4>Mis Publicaciones</h4>
