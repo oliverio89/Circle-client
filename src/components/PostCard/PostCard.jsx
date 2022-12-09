@@ -44,7 +44,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                     <Button variant="dark" size="sm">Ver detalles</Button>
                 </Link>
 
-                <LikeButton />
+                <LikeButton post_id={_id} likes={likes} loadPosts={loadPosts} />
 
 
                 {

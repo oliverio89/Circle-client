@@ -37,9 +37,18 @@ class PostService {
         return this.api.put(`/editPost/${palabra.id}`, palabra)
     }
 
+    // giveLike(giveLike) {
+    //     return this.api.put(`/likePost`, giveLike)
+    // }
+
+    giveLike(comenData) {
+        return this.api.put(`/likePost/${comenData}`)
+    }
+
     deletePost(post_id) {
         return this.api.delete(`/deletePost/${post_id}`)
     }
+
 }
 
 

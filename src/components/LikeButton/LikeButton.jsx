@@ -1,20 +1,19 @@
-import { useState } from "react";
+
+import postService from "../../services/post.service";
 import './LikeButton.css'
 
-
-const LikeButton = () => {
-
-    const [likes, setLikes] = useState(0)
+const LikeButton = ({ post_id, likes, loadPosts }) => {
     const addLike = () => {
-
-        setLikes(likes + 1)
+        postService
+            .giveLike(post_id)
+            .then(() => loadPosts())
+            .catch(err => console.log(err))
     }
-
 
 
     return (
         <>
-            <button className="button" onClick={addLike}>{likes}Like</button>
+            <button className="button" onClick={addLike}>{likes.length}Like</button>
         </>
 
     )
