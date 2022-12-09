@@ -37,9 +37,11 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
     return (
         <Card className="mb-4 PostCard">
             <Card.Img variant="top" src={imageUrl} />
+
             {/* <Card.Img variant="top" src={imageOwner} /> */}
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
+
                 <Link to={`/detalles/${_id}`}>
                     <Button variant="dark" size="sm">Ver detalles</Button>
                 </Link>
@@ -60,7 +62,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                                 <div className="col-md-6">
                                     <Link to="/profile">
                                         <Nav.Link as="div">
-                                            <img src={user.imageUrl} alt='fotoperfil' />
+                                            <img src={elem.owner.imageUrl} alt='fotoperfil' />
                                         </Nav.Link>
                                     </Link>
                                 </div>
