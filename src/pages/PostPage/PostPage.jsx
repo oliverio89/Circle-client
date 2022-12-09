@@ -48,7 +48,7 @@ const PostListPage = () => {
         <>
             <Container>
                 <h1>Muro de comentarios</h1>
-                {user && <Button onClick={openModal} variant="dark" size="sm">Crear un nuevo Post</Button>}
+                {user && <Button onClick={openModal} variant="dark" size="lm">Crear un nuevo Post</Button>}
                 <hr />
                 {!posts ? <Loader /> : <PostList posts={posts} loadPosts={loadPosts} />}
                 <hr />

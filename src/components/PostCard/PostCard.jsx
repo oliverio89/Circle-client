@@ -8,10 +8,10 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
 import postService from '../../services/post.service';
 import EditPostForm from '../EditPostForm/EditPostForm';
+import ComentForm from '../ComentForm/ComentForm';
 
 
-
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOwner }) {
 
     const { user } = useContext(AuthContext)
 
@@ -35,25 +35,34 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts }) {
     return (
         <Card className="mb-4 PostCard">
             <Card.Img variant="top" src={imageUrl} />
+            {/* <Card.Img variant="top" src={imageOwner} /> */}
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
+                <Link to={`/detalles/${_id}`}>
+                    <Button variant="dark" size="sm">Ver detalles</Button>
+                </Link>
+                <h2>List Comentarios</h2>
+
                 {
-                    !owner || owner != user?._id
+                    !owner || owner !== user?._id
                         ?
                         <>
-                            <Link to={`/detalles/${_id}`}>
-                                <div className="d-grid">
-                                    <Button variant="dark" size="sm">Ver detalles</Button>
-                                </div>
-                            </Link>
+                            <Button onClick={openModal} variant="primary" size="sm">Comentar</Button>
+
+                            <Modal show={showModal} onHide={closeModal}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Escribir tu comentario</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <ComentForm closeModal={closeModal} loadPosts={loadPosts} />
+                                </Modal.Body>
+                            </Modal>
                         </>
                         :
                         <>
                             <div className="d-grid">
                                 <ButtonGroup aria-label="Basic example">
-                                    <Link to={`/detalles/${_id}`}>
-                                        <Button variant="dark" size="sm">Ver detalles</Button>
-                                    </Link>
+
                                     <Button onClick={openModal} variant="dark" size="sm">Editar Post</Button>
                                     <Modal show={showModal} onHide={closeModal}>
                                         <Modal.Header closeButton>
@@ -66,9 +75,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts }) {
                                     <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>
                                 </ButtonGroup>
                             </div>
-
                         </>
-
                 }
             </Card.Body>
         </Card>

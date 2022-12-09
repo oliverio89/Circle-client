@@ -4,19 +4,20 @@ import { AuthContext } from '../../contexts/auth.context';
 import { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import userService from '../../services/user.service'
+
 import LikeButton from '../../components/LikeButton/LikeButton';
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
 
 
 
 
-// const addFriend = (firend_id) => {
-//     console.log('hiiiiii')
-//     userService
-//         .findbyId(firend_id)
-//         .then(() => console.log(firend_id))
-//         .catch(err => console.error(err))
-// }
+const addFriend = (user_id) => {
+    console.log('hiiiiii')
+    userService
+        .addFriend(user_id)
+        .then(() => console.log(user_id))
+        .catch(err => console.error(err))
+}
 
 
 
@@ -53,7 +54,7 @@ function ProfilePage(name, bio, imageUrl, _id) {
 
                 <h4>Amigos</h4>
 
-                {/* <Button as="div" variant="dark" onClick>Agregar Amigo</Button> */}
+                <Button as="div" variant="dark" onClick={addFriend}>Agregar Amigo</Button>
 
                 <Col>
                     <h4>Mis Publicaciones</h4>
@@ -63,14 +64,12 @@ function ProfilePage(name, bio, imageUrl, _id) {
                 <Link to="/post">
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                 </Link>
-                {/* < LikeButton /> */}
+                < LikeButton />
+
 
 
             </Row>
-        </Container >
-
-
+        </Container>
     );
 }
-
 export default ProfilePage;

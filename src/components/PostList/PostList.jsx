@@ -8,7 +8,7 @@ const PostList = ({ posts, loadPosts }) => {
         <Row>
             {posts.map(elm => {
                 return (
-                    <Col sm={{ span: 4 }} key={elm._id} >
+                    <Col sm={{ offset: 3, span: 6 }} key={elm._id} >
 
                         <PostCard  {...elm} loadPosts={loadPosts} />
                     </Col>
