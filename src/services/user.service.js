@@ -5,7 +5,7 @@ class UserService {
     constructor() {
 
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/auth`
+            baseURL: `${process.env.REACT_APP_API_URL}/user`
         })
 
         this.api.interceptors.request.use((config) => {
@@ -25,15 +25,14 @@ class UserService {
     }
 
     editUser(user_id) {
-        return this.api.user(`/edit/${user_id}`)
+        return this.api.put(`/editUser/${user_id}`)
     }
 
     deleteUser(user_id) {
-        return this.api.post(`/deleteUser/${user_id}`)
+        console.log('estoy entrando')
+        return this.api.delete(`/deleteUser/${user_id}`)
+
     }
-
-
-
 
 }
 
