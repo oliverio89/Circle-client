@@ -1,42 +1,23 @@
-import React, { useState } from "react";
-import "./LikeButton.css";
+import { useState } from "react";
+import './LikeButton.css'
 
-const particleList = Array.from(Array(10));
 
 const LikeButton = () => {
-    const [liked, setLiked] = useState(null);
-    const [clicked, setClicked] = useState(false);
+
+    const [likes, setLikes] = useState(0)
+    const addLike = () => {
+
+        setLikes(likes + 1)
+    }
+
+
 
     return (
-        <button
-            onClick={() => {
-                setLiked(!liked);
-                setClicked(true);
-            }}
-            onAnimationEnd={() => setClicked(false)}
-            className={"like-button-wrapper liked clicked "}
-        >
-            {liked && (
-                <div className="particles">
-                    {particleList.map((_, index) => (
-                        <div
-                            className="particle-rotate"
-                            style={{
-                                transform: `rotate(${(360 / particleList.length) * index + 1
-                                    }deg)`,
-                            }}
-                        >
-                            <div className="particle-tick" />
-                        </div>
-                    ))}
-                </div>
-            )}
-            <div className="like-button">
-                <span>Like</span>
-                <span className={"suffix liked "}>d</span>
-            </div>
-        </button>
-    );
-};
+        <>
+            <button className="button" onClick={addLike}>{likes}Like</button>
+        </>
 
-export default LikeButton;
+    )
+}
+
+export default LikeButton 
