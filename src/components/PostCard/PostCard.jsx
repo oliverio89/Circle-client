@@ -11,7 +11,7 @@ import EditPostForm from '../EditPostForm/EditPostForm';
 import ComentForm from '../ComentForm/ComentForm';
 import LikeButton from '../LikeButton/LikeButton';
 
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOwner, comments, likes }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comments, likes }) {
 
     const { user } = useContext(AuthContext)
 
@@ -37,7 +37,6 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
     return (
         <Card className="mb-4 PostCard">
             <Card.Img variant="top" src={imageUrl} />
-            {/* <Card.Img variant="top" src={imageOwner} /> */}
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Link to={`/detalles/${_id}`}>
@@ -51,9 +50,9 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                     comments.map((elem) => {
 
                         return (
-                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" >
+                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={elem._id} >
 
-                                <div className="col-md-6" key={elem._id}>
+                                <div className="col-md-6" >
 
                                     <Card.Text>{elem.description}</Card.Text>
                                 </div>
@@ -105,7 +104,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                 }
             </Card.Body>
         </Card>
-    );
+    )
 }
 
-export default PostCard;
+export default PostCard
