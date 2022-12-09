@@ -1,4 +1,3 @@
-
 import postService from "../../services/post.service";
 import './LikeButton.css'
 
@@ -19,4 +18,4 @@ const LikeButton = ({ post_id, likes, loadPosts }) => {
     )
 }
 
-export default LikeButton 
+export default LikeButton
