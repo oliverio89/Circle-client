@@ -1,15 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from '../../contexts/auth.context';
-import { useContext } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { useContext, useState } from 'react';
+import { Col, Container, Row, Modal } from 'react-bootstrap';
 import userService from '../../services/user.service'
-
 import LikeButton from '../../components/LikeButton/LikeButton';
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
-
-
-
 
 const addFriend = (user_id) => {
     console.log('hiiiiii')
@@ -19,12 +15,23 @@ const addFriend = (user_id) => {
         .catch(err => console.error(err))
 }
 
-
-
 function ProfilePage(name, bio, imageUrl, _id) {
 
     const navigate = useNavigate()
+    const [showModal, setShowModal] = useState(false)
+    const closeModal = () => setShowModal(false)
+    const [showForm, setShowForm] = useState('')
     const { user, logoutUser } = useContext(AuthContext)
+
+    const editUser = () => {
+        setShowForm('EditProfileForm')
+        setShowModal(true)
+    }
+
+    const fireFinalActions = () => {
+        navigate('/profile')
+        closeModal()
+    }
 
     const deleteUser = (user_id) => {
 
@@ -50,7 +57,6 @@ function ProfilePage(name, bio, imageUrl, _id) {
                     <p>{user.bio}</p>
                 </Col>
                 <Button variant="danger" size="sm" onClick={() => deleteUser(user._id)}>Eliminar Perfil</Button>
-                <Button variant="warning" size="sm" onClick={() => (user._id)}>Editar Perfil</Button>
 
                 <h4>Amigos</h4>
 
@@ -59,12 +65,27 @@ function ProfilePage(name, bio, imageUrl, _id) {
                 <Col>
                     <h4>Mis Publicaciones</h4>
                 </Col>
+                <Button as="div" variant="warning" onClick={editUser}>Editar Perfil</Button>
+
+
+                <Modal show={showModal} onHide={closeModal}>
+
+                    <Modal.Header closeButton>
+                        <Modal.Title>Editar Perfil</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {showForm === 'EditProfileForm' && <EditProfileForm name={user.name} bio={user.bio} imageUrl={user.imageUrl} id={user._id} />}
+                    </Modal.Body>
+                </Modal>
+
+
 
 
                 <Link to="/post">
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                 </Link>
-                < LikeButton />
+
+
 
 
 
@@ -72,4 +93,5 @@ function ProfilePage(name, bio, imageUrl, _id) {
         </Container>
     );
 }
+
 export default ProfilePage;

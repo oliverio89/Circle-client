@@ -4,7 +4,6 @@ import userService from "../../services/user.service"
 import uploadServices from "../../services/upload.service"
 
 const EditProfileForm = ({ name, bio, imageUrl, id, }) => {
-
     const [userEditData, setUserEditData] = useState({
         name: name,
         bio: bio,
@@ -17,6 +16,7 @@ const EditProfileForm = ({ name, bio, imageUrl, id, }) => {
     const handleInputChange = e => {
         const { name, value } = e.target
         setUserEditData({ ...userEditData, [name]: value })
+
     }
 
     const handleFileUpload = e => {
@@ -30,6 +30,7 @@ const EditProfileForm = ({ name, bio, imageUrl, id, }) => {
             .uploadimage(formData)
             .then(res => {
                 setUserEditData({ ...userEditData, imageUrl: res.data.cloudinary_url })
+
                 setLoadingImage(false)
             })
             .catch(err => console.log(err))
