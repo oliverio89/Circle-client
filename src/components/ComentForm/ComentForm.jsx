@@ -5,20 +5,29 @@ import commentService from '../../services/comment.service'
 
 
 
-const ComentForm = () => {
+const ComentForm = ({ closeModal, loadPosts, post_id }) => {
     const [commentData, setCommentData] = useState({
         owner: '',
         description: '',
     })
-
     const { description } = commentData
     const handleInputChange = e => {
         const { name, value } = e.target
         setCommentData({ ...commentData, [name]: value })
     }
 
+    const handleCommitSubmit = e => {
+        e.preventDefault()
+        commentService
+            .saveComment(commentData, post_id)
+            .then(() => {
+                loadPosts()
+                closeModal()
+            })
+    }
+
     return (
-        <Form onSubmit>
+        <Form onSubmit={handleCommitSubmit}>
             <Form.Group className="mb-3" controlId="description">
                 <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
             </Form.Group>

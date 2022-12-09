@@ -10,8 +10,7 @@ import postService from '../../services/post.service';
 import EditPostForm from '../EditPostForm/EditPostForm';
 import ComentForm from '../ComentForm/ComentForm';
 
-
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOwner }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOwner, comments }) {
 
     const { user } = useContext(AuthContext)
 
@@ -19,6 +18,8 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
+
+
 
 
 
@@ -42,6 +43,11 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                     <Button variant="dark" size="sm">Ver detalles</Button>
                 </Link>
                 <h2>List Comentarios</h2>
+                {
+                    comments.map((elem) => {
+                        return <h2 key={elem._id}>{elem.description}</h2>
+                    })
+                }
 
                 {
                     !owner || owner !== user?._id
@@ -54,7 +60,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                                     <Modal.Title>Escribir tu comentario</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <ComentForm closeModal={closeModal} loadPosts={loadPosts} />
+                                    <ComentForm closeModal={closeModal} loadPosts={loadPosts} post_id={_id} />
                                 </Modal.Body>
                             </Modal>
                         </>

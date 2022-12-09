@@ -24,12 +24,13 @@ class CommentService {
     getComments() {
         return this.api.get('/getAllComments')
     }
-    saveComment(commentData) {
-        return this.api.post('/saveComment', commentData)
+
+    saveComment(commentData, post_id) {
+        return this.api.post(`/saveComment/${post_id}`, commentData)
     }
 
     deleteComment(comment_id) {
-        return this.api.delete(`/deletePost/${comment_id}`)
+        return this.api.delete(`/deleteComment/${comment_id}`)
     }
 }
 
