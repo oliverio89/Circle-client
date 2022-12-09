@@ -11,7 +11,7 @@ import EditPostForm from '../EditPostForm/EditPostForm';
 
 
 
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOwner }) {
 
     const { user } = useContext(AuthContext)
 
@@ -35,6 +35,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts }) {
     return (
         <Card className="mb-4 PostCard">
             <Card.Img variant="top" src={imageUrl} />
+            {/* <Card.Img variant="top" src={imageOwner} /> */}
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 {
