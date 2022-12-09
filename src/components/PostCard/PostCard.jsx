@@ -11,7 +11,7 @@ import EditPostForm from '../EditPostForm/EditPostForm';
 import ComentForm from '../ComentForm/ComentForm';
 import LikeButton from '../LikeButton/LikeButton';
 
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOwner, comments, likes }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comments, likes }) {
 
     const { user } = useContext(AuthContext)
 
@@ -37,30 +37,31 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
     return (
         <Card className="mb-4 PostCard">
             <Card.Img variant="top" src={imageUrl} />
-            {/* <Card.Img variant="top" src={imageOwner} /> */}
+
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
+
                 <Link to={`/detalles/${_id}`}>
                     <Button variant="dark" size="sm">Ver detalles</Button>
                 </Link>
 
-                <LikeButton />
+                <LikeButton post_id={_id} likes={likes} loadPosts={loadPosts} />
 
 
                 {
                     comments.map((elem) => {
 
                         return (
-                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" >
+                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={elem._id} >
 
-                                <div className="col-md-6" key={elem._id}>
+                                <div className="col-md-6" >
 
                                     <Card.Text>{elem.description}</Card.Text>
                                 </div>
                                 <div className="col-md-6">
                                     <Link to="/profile">
                                         <Nav.Link as="div">
-                                            <img src={user.imageUrl} alt='fotoperfil' />
+                                            <img src={elem.owner.imageUrl} alt='fotoperfil' />
                                         </Nav.Link>
                                     </Link>
                                 </div>
@@ -105,7 +106,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, imageOw
                 }
             </Card.Body>
         </Card>
-    );
+    )
 }
 
-export default PostCard;
+export default PostCard

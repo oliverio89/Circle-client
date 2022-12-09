@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react"
-import { Container, Row, Col, Button } from "react-bootstrap"
+import { useEffect, useState, useContext } from "react"
+import { Container, Row, Col, Button, Card, ButtonGroup, Nav, Modal } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import postService from "../../services/post.service"
+import { AuthContext } from './../../contexts/auth.context'
+
 
 
 const PostDetailsPage = () => {
+
+    const { user } = useContext(AuthContext)
 
     const [post, setPost] = useState()
 
@@ -38,6 +42,30 @@ const PostDetailsPage = () => {
                                 <h3>Especificaciones</h3>
                                 <p>{post.description}</p>
                                 <hr />
+
+                                {
+                                    post.comments.map((elem) => {
+
+                                        return (
+                                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={elem._id} >
+
+                                                <div className="col-md-6" >
+
+                                                    <Card.Text>{elem.description}</Card.Text>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <Link to="/profile">
+                                                        <Nav.Link as="div">
+                                                            <img src={user.imageUrl} alt='fotoperfil' />
+                                                        </Nav.Link>
+                                                    </Link>
+                                                </div>
+                                            </Row>
+                                        )
+                                    })
+                                }
+
+
 
                                 <Link to="/post">
                                     <Button as="div" variant="dark">Volver al Muro</Button>
