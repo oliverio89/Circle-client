@@ -20,8 +20,8 @@ class UserService {
         })
     }
 
-    addFriend(userData) {
-        return this.api.post('/addFriend', userData)
+    addFriend(user_id) {
+        return this.api.post('/addFriend', user_id)
     }
 
     editUser(user_id) {

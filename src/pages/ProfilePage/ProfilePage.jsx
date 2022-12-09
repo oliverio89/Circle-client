@@ -3,18 +3,18 @@ import { Link } from "react-router-dom"
 import { AuthContext } from '../../contexts/auth.context';
 import { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-// import userService from '../../services/user.service'
+import userService from '../../services/user.service'
 import LikeButton from '../../components/LikeButton/LikeButton';
 
 
 
-// const addFriend = (firend_id) => {
-//     console.log('hiiiiii')
-//     userService
-//         .findbyId(firend_id)
-//         .then(() => console.log(firend_id))
-//         .catch(err => console.error(err))
-// }
+const addFriend = (user_id) => {
+    console.log('hiiiiii')
+    userService
+        .addFriend(user_id)
+        .then(() => console.log(user_id))
+        .catch(err => console.error(err))
+}
 
 
 
@@ -37,7 +37,7 @@ function ProfilePage() {
 
                 <h4>Amigos</h4>
 
-                <Button as="div" variant="dark" onClick>Agregar Amigo</Button>
+                <Button as="div" variant="dark" onClick={addFriend}>Agregar Amigo</Button>
 
                 <Col>
                     <h4>Mis Publicaciones</h4>
