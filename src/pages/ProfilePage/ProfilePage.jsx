@@ -48,13 +48,8 @@ function ProfilePage() {
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                 </Link>
                 < LikeButton />
-
-
             </Row>
-        </Container >
-
-
+        </Container>
     );
 }
-
 export default ProfilePage;
