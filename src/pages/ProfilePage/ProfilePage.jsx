@@ -4,24 +4,17 @@ import { AuthContext } from '../../contexts/auth.context';
 import { useContext, useState } from 'react';
 import { Col, Container, Row, Modal } from 'react-bootstrap';
 import userService from '../../services/user.service'
-import LikeButton from '../../components/LikeButton/LikeButton';
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
+import postService from '../../services/post.service';
 
 const addFriend = (user_id) => {
-    console.log('hiiiiii')
     userService
         .addFriend(user_id)
         .then(() => console.log(user_id))
         .catch(err => console.error(err))
 }
 
-
-
-
-
-
 function ProfilePage(name, bio, imageUrl, _id) {
-
 
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
@@ -40,7 +33,6 @@ function ProfilePage(name, bio, imageUrl, _id) {
     }
 
     const addFriend = (user_id) => {
-        console.log('hiiiiii', user_id)
 
         userService
             .addFriend(user_id)
@@ -58,10 +50,10 @@ function ProfilePage(name, bio, imageUrl, _id) {
             }
             )
             .catch(err => console.error(err))
-
     }
 
     return (
+
         <Container>
             <Row>
                 <Col md={{ span: 4 }}>
@@ -71,17 +63,16 @@ function ProfilePage(name, bio, imageUrl, _id) {
                     <p>{user.name}</p>
                     <p>{user.bio}</p>
                 </Col>
-                <Button variant="danger" size="sm" onClick={() => deleteUser(user._id)}>Eliminar Perfil</Button>
 
                 <h4>Amigos</h4>
 
-                <Button as="div" variant="dark" onClick={() => addFriend(user._id)}>Agregar Amigo</Button>
+                {/* <Button as="div" variant="dark" onClick={() => addFriend(user._id)}>Agregar Amigo</Button> */}
 
                 <Col>
                     <h4>Mis Publicaciones</h4>
-                </Col>
-                <Button as="div" variant="warning" onClick={editUser}>Editar Perfil</Button>
+                    <p>{user.post_id}</p>
 
+                </Col>
 
                 <Modal show={showModal} onHide={closeModal}>
 
@@ -93,17 +84,11 @@ function ProfilePage(name, bio, imageUrl, _id) {
                     </Modal.Body>
                 </Modal>
 
-
-
-
+                <Button as="div" variant="warning" onClick={editUser}>Editar Perfil</Button>
+                <Button variant="danger" size="sm" onClick={() => deleteUser(user._id)}>Eliminar Perfil</Button>
                 <Link to="/post">
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                 </Link>
-
-
-
-
-
             </Row>
         </Container>
     );
