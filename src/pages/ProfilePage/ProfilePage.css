@@ -31,5 +31,5 @@ button:hover:not(:disabled) {
 
 button:disabled {
     cursor: auto;
-    color: grey;
+    color: rgb(128, 128, 128);
 }
