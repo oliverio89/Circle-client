@@ -14,14 +14,24 @@ const PostDetailsPage = () => {
 
     const { post_id } = useParams()
 
-    useEffect(() => {
+
+    const getPostDetails = (post_id) => {
+
         postService
             .getOnePost(post_id)
             .then(({ data }) => setPost(data))
             .catch(err => console.error(err))
+
+    }
+
+
+    useEffect(() => {
+        getPostDetails(post_id)
     }, [])
 
     // decostruir
+
+    // const { title, description, comments, imageUrl } = post
 
     return (
 
@@ -44,19 +54,19 @@ const PostDetailsPage = () => {
                                 <hr />
 
                                 {
-                                    post.comments.map((elem) => {
+                                    post.comments.map((comment) => {
 
                                         return (
-                                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={elem._id} >
+                                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={comment._id} >
 
                                                 <div className="col-md-6" >
 
-                                                    <Card.Text>{elem.description}</Card.Text>
+                                                    <Card.Text>{comment.description}</Card.Text>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <Link to="/profile">
                                                         <Nav.Link as="div">
-                                                            <img src={user.imageUrl} alt='fotoperfil' />
+                                                            <img src={comment.owner.imageUrl} alt='fotoperfil' />
                                                         </Nav.Link>
                                                     </Link>
                                                 </div>

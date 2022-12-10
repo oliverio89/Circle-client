@@ -59,7 +59,7 @@ const Navigation = () => {
                                 <Link to="/post">
                                     <Nav.Link as="div">Muro de publicaciónes</Nav.Link>
                                 </Link>
-                                <Link to="/profile">
+                                <Link to={`/profile/${user._id}`}>
                                     <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
                                 </Link>
                                 <Link to="/admin">

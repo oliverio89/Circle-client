@@ -20,6 +20,11 @@ class UserService {
         })
     }
 
+    giveMeUser(user_id) {
+        console.log("soy userid de givemeuser", user_id)
+        return this.api.get(`/giveMeUser/${user_id}`, user_id)
+    }
+
     addFriend(user_id) {
         return this.api.post(`/addFriend/${user_id}`)
     }

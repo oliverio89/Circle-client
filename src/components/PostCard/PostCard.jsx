@@ -59,7 +59,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                                     <Card.Text>{elem.description}</Card.Text>
                                 </div>
                                 <div className="col-md-6">
-                                    <Link to="/profile">
+                                    <Link to={`/profile/${elem.owner._id}`}>
                                         <Nav.Link as="div">
                                             <img src={elem.owner.imageUrl} alt='fotoperfil' />
                                         </Nav.Link>

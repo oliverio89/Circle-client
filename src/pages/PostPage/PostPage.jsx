@@ -32,12 +32,12 @@ const PostListPage = () => {
     }
 
 
-    const fireFinalActions = () => {
-        setShowToast(true)
-        setToastMessage('Post creado en la BBDD')
-        loadPosts()
-        closeModal()
-    }
+    // const fireFinalActions = () => {
+    //     setShowToast(true)
+    //     setToastMessage('Post creado en la BBDD')
+    //     loadPosts()
+    //     closeModal()
+    // }
 
     useEffect(() => {
         loadPosts()

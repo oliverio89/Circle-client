@@ -22,7 +22,7 @@ const AppRoutes = () => {
 
             <Route element={<PrivateRoute />}>
                 <Route path="/detalles/:post_id" element={<PostDetailsPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/:user_id" element={<ProfilePage />} />
                 <Route path="/admin" element={<PanelAdminPage />} />
                 <Route path="/post" element={<PostListPage />} />
             </Route>
