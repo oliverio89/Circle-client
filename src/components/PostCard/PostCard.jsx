@@ -34,6 +34,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
     }
 
 
+
     return (
         <Card className="mb-4 PostCard">
             <Card.Img variant="top" src={imageUrl} />
