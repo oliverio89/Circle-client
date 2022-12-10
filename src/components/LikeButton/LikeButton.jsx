@@ -12,7 +12,10 @@ const LikeButton = ({ post_id, likes, loadPosts }) => {
 
     return (
         <>
-            <button className="button" onClick={addLike}>{likes.length}Like</button>
+            <button className="button" onClick={addLike}>{likes.length} like</button>
+            {/* <div class="wrap">
+                <button className="button" onClick={addLike}>{likes.length}Like</button>
+            </div> */}
         </>
 
     )
