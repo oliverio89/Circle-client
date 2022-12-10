@@ -45,6 +45,9 @@ class PostService {
         return this.api.put(`/likePost/${comenData}`)
     }
 
+    // myCreate(myCreatedData) {
+    //     return this.api.put(`/myCreated/${myCreatedData}`)
+    // }
     deletePost(post_id) {
         return this.api.delete(`/deletePost/${post_id}`)
     }
