@@ -19,7 +19,7 @@ function ProfilePage() {
     const closeModal = () => setShowModal(false)
     const [showForm, setShowForm] = useState('')
     const { user, logoutUser } = useContext(AuthContext)
-    const [userProfile, setUserProfile] = useState('')
+    const [userProfile, setUserProfile] = useState(null)
 
     const editUser = () => {
         setShowForm('EditProfileForm')
@@ -65,53 +65,57 @@ function ProfilePage() {
 
     return (
 
-        <Container>
-            <Row className="d-none d-sm-none d-md-block d-lg-block profile">
+        !userProfile
+            ? <p>Loading....</p>
+            :
 
-                <Col sm={4}>
-                    <img src={userProfile.imageUrl} style={{ width: '40%' }} />
-                    <h5>{userProfile.name}</h5>
-                    <p>{userProfile.bio}</p>
+            <Container>
+                <Row className="d-none d-sm-none d-md-block d-lg-block profile">
 
+                    <Col sm={4}>
+                        <img src={userProfile.imageUrl} style={{ width: '40%' }} />
+                        <h5>{userProfile.name}</h5>
+                        <p>{userProfile.bio}</p>
+
+                    </Col>
+                    <Col sm={8}>
+                        <p>{userProfile.bio}</p>
+                        <h4>Lista de Amigos </h4>
+                        <p><FriendsList dataFriend={userProfile.friends} /></p>
+                    </Col>
+                </Row>
+
+                <Button as="div" variant="dark" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
+
+                <Col sm={12}>
+                    <h4>Mis Publicaciones</h4>
                 </Col>
-                <Col sm={8}>
-                    <p>{userProfile.bio}</p>
-                    <h4>Lista de Amigos </h4>
-                    <p><FriendsList dataFriend={userProfile.friends ? userProfile.friends + 'pasa' : 'cargando'} /></p>
-                </Col>
-            </Row>
 
-            <Button as="div" variant="dark" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
+                {
+                    user._id === userProfile._id ?
 
-            <Col sm={12}>
-                <h4>Mis Publicaciones</h4>
-            </Col>
-
-            {
-                user._id === userProfile._id ?
-
-                    <>
-                        <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
-                        <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
-                        <Modal show={showModal} onHide={closeModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Editar Perfil</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
-                            </Modal.Body>
-                        </Modal>
-                    </>
-                    : <></>
-            }
+                        <>
+                            <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
+                            <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
+                            <Modal show={showModal} onHide={closeModal}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Editar Perfil</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
+                                </Modal.Body>
+                            </Modal>
+                        </>
+                        : <></>
+                }
 
 
-            <Link to="/post">
-                <Button as="div" variant="dark">Volver a las Publicaciones</Button>
-            </Link>
+                <Link to="/post">
+                    <Button as="div" variant="dark">Volver a las Publicaciones</Button>
+                </Link>
 
 
-        </Container>
+            </Container>
     )
 }
 
