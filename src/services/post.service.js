@@ -30,7 +30,7 @@ class PostService {
     }
 
     savePost(postData) {
-        return this.api.post('/savePost', postData)
+        return this.api.post('/savePost/', postData)
     }
 
     editPost(palabra) {
@@ -49,9 +49,10 @@ class PostService {
     }
 
 
-    // myCreate(myCreatedData) {
-    //     return this.api.put(`/myCreated/${myCreatedData}`)
+    // myCreate(post_id) {
+    //     return this.api.put(`/myCreated/${post_id}`)
     // }
+
     deletePost(post_id) {
         return this.api.delete(`/deletePost/${post_id}`)
     }
