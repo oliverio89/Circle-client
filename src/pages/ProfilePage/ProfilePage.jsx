@@ -101,22 +101,6 @@ function ProfilePage() {
                     <h4>Mis Publicaciones</h4>
 
                     <MyPostList dataPost={userProfile.createdPosts} />
-
-                    <>
-                        <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
-                        <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
-                        <Modal show={showModal} onHide={closeModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Editar Perfil</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
-                            </Modal.Body>
-                        </Modal>
-                    </>
-                    : <></>
-                }
-
                     {
                         (user.role === "ADMIN") &&
                         <>
@@ -128,6 +112,7 @@ function ProfilePage() {
                     <Link to="/post">
                         <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                     </Link>
+                </Row>
             </Container>
     )
 }
