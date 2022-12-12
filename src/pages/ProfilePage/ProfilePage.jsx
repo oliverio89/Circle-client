@@ -30,13 +30,11 @@ function ProfilePage() {
     const { user_id } = useParams()
 
 
-
     const loadUser = (user_id) => {
 
         userService
             .giveMeUser(user_id)
             .then((elm) => {
-                console.log("soy el data de un user", elm.data)
                 setUserProfile(elm.data)
             })
             .catch(err => console.log(err))
@@ -46,13 +44,13 @@ function ProfilePage() {
         loadUser(user_id)
     }, [])
 
-    // const addFriend = (user_id) => {
+    const addFriend = (user_id) => {
 
-    //     userService
-    //         .addFriend(user_id)
-    //         .then()
-    //         .catch(err => console.log(err))
-    // }
+        userService
+            .addFriend(user_id)
+            .then()
+            .catch(err => console.log(err))
+    }
 
     const deleteUser = (user_id) => {
 
@@ -61,18 +59,14 @@ function ProfilePage() {
             .then(() => {
                 navigate('/')
                 logoutUser()
-            }
-            )
+            })
             .catch(err => console.error(err))
-
     }
 
 
 
 
     return (
-
-
 
         <Container>
             <Row className="d-none d-sm-none d-md-block d-lg-block profile">
@@ -86,11 +80,11 @@ function ProfilePage() {
                 <Col sm={8}>
                     <p>{userProfile.bio}</p>
                     <h4>Lista de Amigos </h4>
-                    {/* <p><FriendsList dataFriend={userProfile.name} /></p> */}
+                    <p><FriendsList dataFriend={userProfile.friends ? userProfile.friends + 'pasa' : 'cargando'} /></p>
                 </Col>
             </Row>
 
-            {/* <Button as="div" variant="dark" onClick={() => addFriend(userProfile._id)}>Agregar Amigo</Button> */}
+            <Button as="div" variant="dark" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
 
             <Col sm={12}>
                 <h4>Mis Publicaciones</h4>

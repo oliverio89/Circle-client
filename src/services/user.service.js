@@ -21,7 +21,6 @@ class UserService {
     }
 
     giveMeUser(user_id) {
-        console.log("soy userid de givemeuser", user_id)
         return this.api.get(`/giveMeUser/${user_id}`, user_id)
     }
 
@@ -30,12 +29,10 @@ class UserService {
     }
 
     editUser(user) {
-        // console.log(user)
         return this.api.put(`/editUser/${user.id}`, user)
     }
 
     deleteUser(user_id) {
-        console.log('estoy entrando')
         return this.api.delete(`/deleteUser/${user_id}`)
 
     }
