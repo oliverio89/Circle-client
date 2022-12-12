@@ -5,7 +5,7 @@
     margin: auto;
 }
 
-button {
+/* button {
     background-color: #eee;
     border: none;
     padding: 1rem;
@@ -32,4 +32,4 @@ button:hover:not(:disabled) {
 button:disabled {
     cursor: auto;
     color: rgb(128, 128, 128);
-}
+} */

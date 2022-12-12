@@ -26,11 +26,11 @@ const LikeButton = ({ post_id, likes, loadPosts }) => {
     return (
         likes.includes(user._id) ?
             <>
-                <button className="button btn-dislike" onClick={quitLike}>{likes.length}  LIKED</button>
+                <button className="button btn-dislike" onClick={quitLike}>{likes.length}</button>
             </>
             :
             <>
-                <button className="button btn-like" onClick={addLike}>{likes.length}   LIKE</button>
+                <button className="button btn-like" onClick={addLike}>{likes.length}</button>
             </>
     )
 
