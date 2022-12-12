@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import postService from "../../services/post.service"
 import { AuthContext } from './../../contexts/auth.context'
 import commentService from "../../services/comment.service"
-
+import { useNavigate } from "react-router-dom"
 
 const PostDetailsPage = () => {
 
@@ -48,7 +48,21 @@ const PostDetailsPage = () => {
             .catch(err => console.error(err))
 
     }
+    const navigate = useNavigate()
+    const FinalActionsDeletePost = () => {
 
+        loadOnePost()
+        navigate('/post')
+    }
+
+    const deletePost = (post_id) => {
+
+        postService
+            .deletePost(post_id)
+            .then(() => FinalActionsDeletePost())
+            .catch(err => console.error(err))
+
+    }
     useEffect(() => {
         loadOnePost()
     }, [])
@@ -64,6 +78,12 @@ const PostDetailsPage = () => {
                     :
                     <>
                         <h1 className="mb-4">Detalles de {post.title}</h1>
+
+                        <Link to={`/profile/${post.owner}`}>
+                            <Nav.Link as="div">
+                                <p>{post.owner}</p>
+                            </Nav.Link>
+                        </Link>
                         <hr />
 
                         <Row>
@@ -107,6 +127,13 @@ const PostDetailsPage = () => {
                                 <Link to="/post">
                                     <Button as="div" variant="dark">Volver al Muro</Button>
                                 </Link>
+
+                                {
+                                    (user.role === "ADMIN") &&
+                                    <Button variant="danger" size="sm" onClick={() => deletePost(post_id)}>Eliminar el post</Button>
+                                }
+
+
                             </Col>
 
                             <Col md={{ span: 4 }}>

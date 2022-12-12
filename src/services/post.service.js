@@ -48,6 +48,14 @@ class PostService {
         return this.api.put(`/dislikePost/${disLikeData}`)
     }
 
+    // reportar a un post
+
+    reportPost(report) {
+        return this.api.put(`/reportPost/${report}`)
+    }
+
+
+
 
     // myCreate(post_id) {
     //     return this.api.put(`/myCreated/${post_id}`)

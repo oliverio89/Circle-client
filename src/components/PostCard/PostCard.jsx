@@ -10,13 +10,15 @@ import postService from '../../services/post.service';
 import EditPostForm from '../EditPostForm/EditPostForm';
 import ComentForm from '../ComentForm/ComentForm';
 import LikeButton from '../LikeButton/LikeButton';
+import ReportButton from '../ReportButton/ReportButton';
 
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comments, likes }) {
+
+
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comments, likes, reportes }) {
 
     const { user } = useContext(AuthContext)
 
     const [showModal, setShowModal] = useState(false)
-
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
@@ -37,8 +39,12 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
 
     return (
         <Card className="mb-4 PostCard">
-            <Card.Img variant="top" src={imageUrl} />
-
+            {imageUrl ?
+                <>
+                    <Card.Img variant="top" src={imageUrl} />
+                </>
+                : <></>
+            }
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
 
@@ -47,6 +53,11 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                 </Link>
 
                 <LikeButton post_id={_id} likes={likes} loadPosts={loadPosts} />
+
+                {/* reportar a un post */}
+
+                <ReportButton post_id={_id} reportes={reportes} loadPosts={loadPosts} />
+
 
 
                 {
@@ -70,40 +81,40 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                         )
                     })
                 }
+                <>
+                    <Button onClick={openModal} variant="primary" size="sm">Comentar</Button>
+
+                    <Modal show={showModal} onHide={closeModal}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Escribir tu comentario</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ComentForm closeModal={closeModal} loadPosts={loadPosts} post_id={_id} />
+                        </Modal.Body>
+                    </Modal>
+                </>
 
                 {
-                    !owner || owner !== user?._id
-                        ?
-                        <>
-                            <Button onClick={openModal} variant="primary" size="sm">Comentar</Button>
+                    (owner === user?._id || user.role === "ADMIN") &&
 
-                            <Modal show={showModal} onHide={closeModal}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Escribir tu comentario</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <ComentForm closeModal={closeModal} loadPosts={loadPosts} post_id={_id} />
-                                </Modal.Body>
-                            </Modal>
-                        </>
-                        :
-                        <>
-                            <div className="d-grid">
-                                <ButtonGroup aria-label="Basic example">
+                    <>
+                        <div className="d-grid">
+                            <ButtonGroup aria-label="Basic example">
 
-                                    <Button onClick={openModal} variant="dark" size="sm">Editar Post</Button>
-                                    <Modal show={showModal} onHide={closeModal}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Editar Post</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            <EditPostForm closeModal={closeModal} loadPosts={loadPosts} title={title} description={description} imageUrl={imageUrl} id={_id} />
-                                        </Modal.Body>
-                                    </Modal>
-                                    <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>
-                                </ButtonGroup>
-                            </div>
-                        </>
+                                <Button onClick={openModal} variant="dark" size="sm">Editar Post</Button>
+                                <Modal show={showModal} onHide={closeModal}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Editar Post</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <EditPostForm closeModal={closeModal} loadPosts={loadPosts} title={title} description={description} imageUrl={imageUrl} id={_id} />
+                                    </Modal.Body>
+                                </Modal>
+
+                                <Button variant="danger" size="sm" onClick={() => deletePost(_id)}>Eliminar</Button>
+                            </ButtonGroup>
+                        </div>
+                    </>
                 }
             </Card.Body>
         </Card>

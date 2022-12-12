@@ -1,9 +1,13 @@
-import PanelAdminForm from "../../components/PanelAdminForm/PanelAdminForm";
 
+import ListReportedPost from "../../components/ListReportedPost/ListReportedPost"
 const PanelAdminPage = () => {
 
     return (
-        <PanelAdminForm />)
+
+        <ListReportedPost />
+
+
+    )
 }
 
 export default PanelAdminPage 

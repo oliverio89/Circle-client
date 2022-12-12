@@ -109,6 +109,13 @@ function ProfilePage() {
                         : <></>
                 }
 
+                {
+                    (user.role === "ADMIN") &&
+                    <>
+                        <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
+                    </>
+                }
+
 
                 <Link to="/post">
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>

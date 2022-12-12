@@ -62,9 +62,13 @@ const Navigation = () => {
                                 <Link to={`/profile/${user._id}`}>
                                     <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
                                 </Link>
-                                <Link to="/admin">
-                                    <Nav.Link as="div">Panel de Administrador</Nav.Link>
-                                </Link>
+                                {
+                                    (user.role === "ADMIN") &&
+                                    <Link to="/admin">
+                                        <Nav.Link as="div">Panel de Administrador</Nav.Link>
+                                    </Link>
+                                }
+
                                 <Nav.Link as="div" onClick={logout}>Cerrar sesión</Nav.Link>
 
                             </>
