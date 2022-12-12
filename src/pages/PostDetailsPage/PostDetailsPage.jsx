@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Card, ButtonGroup, Nav, Modal } from "reac
 import { Link, useParams } from "react-router-dom"
 import postService from "../../services/post.service"
 import { AuthContext } from './../../contexts/auth.context'
-
+import commentService from "../../services/comment.service"
 
 
 const PostDetailsPage = () => {
@@ -15,6 +15,8 @@ const PostDetailsPage = () => {
     const { post_id } = useParams()
 
 
+
+
     const getPostDetails = (post_id) => {
 
         postService
@@ -23,15 +25,33 @@ const PostDetailsPage = () => {
             .catch(err => console.error(err))
 
     }
-
-
     useEffect(() => {
         getPostDetails(post_id)
     }, [])
 
-    // decostruir
 
-    // const { title, description, comments, imageUrl } = post
+    //button de eliminar el comentario
+
+    const loadOnePost = () => {
+        postService
+            .getOnePost(post_id)
+            .then(({ data }) => setPost(data))
+            .catch(err => console.log(err))
+    }
+
+
+    const deleteComment = (comment_id) => {
+
+        commentService
+            .deleteComment(comment_id)
+            .then(() => loadOnePost())
+            .catch(err => console.error(err))
+
+    }
+
+    useEffect(() => {
+        loadOnePost()
+    }, [])
 
     return (
 
@@ -60,11 +80,18 @@ const PostDetailsPage = () => {
                                             < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={comment._id} >
 
                                                 <div className="col-md-6" >
-
                                                     <Card.Text>{comment.description}</Card.Text>
+                                                    {user._id === comment.owner._id ?
+                                                        <>
+                                                            <Button variant="danger" size="sm" onClick={() => deleteComment(comment._id)}>Eliminar</Button>
+                                                        </>
+                                                        :
+                                                        <> </>
+                                                    }
+
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <Link to="/profile">
+                                                    <Link to={`/profile/${comment.owner._id}`}>
                                                         <Nav.Link as="div">
                                                             <img src={comment.owner.imageUrl} alt='fotoperfil' />
                                                         </Nav.Link>
@@ -83,7 +110,7 @@ const PostDetailsPage = () => {
                             </Col>
 
                             <Col md={{ span: 4 }}>
-                                <img src={post.imageUrl} style={{ width: '100%' }} />
+                                <img src={post.imageUrl} style={{ width: '100%' }} alt="h" />
                             </Col>
 
                         </Row>
