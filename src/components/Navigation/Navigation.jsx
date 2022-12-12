@@ -66,13 +66,18 @@ const Navigation = () => {
                                     <Nav.Link as="div">Panel de Administrador</Nav.Link>
                                 </Link>
                                 <Nav.Link as="div" onClick={logout}>Cerrar sesión</Nav.Link>
-
+                                <Link to="/map">
+                                    <Nav.Link as="div">MAP</Nav.Link>
+                                </Link>
                             </>
                             :
                             <>
                                 <div>
                                     <Button onClick={SignUp} variant="dark" size="sm">SignUp/login</Button>
                                 </div>
+                                <Link to="/map">
+                                    <Nav.Link as="div">MAP</Nav.Link>
+                                </Link>
 
                                 <Modal show={showModal} onHide={closeModal}>
                                     <div>
