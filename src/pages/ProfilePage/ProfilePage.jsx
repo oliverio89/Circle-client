@@ -4,7 +4,6 @@ import { AuthContext } from '../../contexts/auth.context';
 import { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Modal } from 'react-bootstrap';
 import userService from '../../services/user.service'
-import LikeButton from '../../components/LikeButton/LikeButton';
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
 import './ProfilePage.css'
 import FriendsList from '../../components/FriendsList/FriendsList';
@@ -52,6 +51,7 @@ function ProfilePage() {
             .catch(err => console.log(err))
     }
 
+
     const deleteUser = (user_id) => {
 
         userService
@@ -63,19 +63,16 @@ function ProfilePage() {
             .catch(err => console.error(err))
     }
 
-
-
-
     return (
 
         <Container>
             <Row className="d-none d-sm-none d-md-block d-lg-block profile">
+
                 <Col sm={4}>
                     <img src={userProfile.imageUrl} style={{ width: '40%' }} />
                     <h5>{userProfile.name}</h5>
                     <p>{userProfile.bio}</p>
-                    <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
-                    <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
+
                 </Col>
                 <Col sm={8}>
                     <p>{userProfile.bio}</p>
@@ -90,22 +87,31 @@ function ProfilePage() {
                 <h4>Mis Publicaciones</h4>
             </Col>
 
-            <Modal show={showModal} onHide={closeModal}>
+            {
+                user._id === userProfile._id ?
 
-                <Modal.Header closeButton>
-                    <Modal.Title>Editar Perfil</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
-                </Modal.Body>
-            </Modal>
+                    <>
+                        <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
+                        <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
+                        <Modal show={showModal} onHide={closeModal}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Editar Perfil</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
+                            </Modal.Body>
+                        </Modal>
+                    </>
+                    : <></>
+            }
+
 
             <Link to="/post">
                 <Button as="div" variant="dark">Volver a las Publicaciones</Button>
             </Link>
 
 
-        </Container >
+        </Container>
     )
 }
 
