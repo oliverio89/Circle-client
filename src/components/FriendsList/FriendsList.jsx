@@ -18,19 +18,18 @@ const FriendsList = ({ dataFriend }) => {
                     dataFriend.map((data) => {
                         return (
 
-                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={data._id} >
 
-                                <div className="col-md-6" >
-                                    <Card.Text>{data.name}</Card.Text>
-                                </div>
-                                <div className="col-md-6">
-                                    <Link to="/profile">
-                                        <Nav.Link as="div">
-                                            <img src={data.imageUrl} alt='fotoperfil' />
-                                        </Nav.Link>
-                                    </Link>
-                                </div>
-                            </Row>
+                            <div key={data._id} >
+                                <Link to={`/profile/${data._id}`}>
+                                    <Nav.Link as="div">
+                                        <img src={data.imageUrl} alt='fotoperfil' />
+                                    </Nav.Link>
+
+
+                                </Link>
+                                <Card.Text>{data.name}</Card.Text>
+                            </div>
+
                         )
 
                     })

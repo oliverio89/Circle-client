@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useState } from "react"
 import { Form, Button, } from "react-bootstrap"
 import postService from "../../services/post.service"
@@ -8,7 +9,11 @@ const NewPostForm = ({ closeModal, loadPosts }) => {
     const [postData, setPostData] = useState({
         title: '',
         description: '',
-        imageUrl: ''
+        imageUrl: '',
+        lat: 0,
+        lng: 0
+
+
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
@@ -34,6 +39,8 @@ const NewPostForm = ({ closeModal, loadPosts }) => {
             .catch(err => console.log(err))
     }
 
+
+
     const handleFormSubmit = e => {
 
         e.preventDefault()
@@ -47,7 +54,19 @@ const NewPostForm = ({ closeModal, loadPosts }) => {
             .catch(err => console.log(err))
     }
 
-    const { title, description, imageUrl } = postData
+    const { title, description, imageUrl, lat, lng } = postData
+
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            data => {
+                const hola = data.coords.latitude
+                const adios = data.coords.longitude
+                console.log('soy location', data.coords.latitude)
+
+                setPostData({ ...postData, lat: hola, lng: adios })
+            })
+    }, [])
 
     return (
         <Form onSubmit={handleFormSubmit}>
