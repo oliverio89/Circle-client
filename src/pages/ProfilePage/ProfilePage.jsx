@@ -7,12 +7,9 @@ import userService from '../../services/user.service'
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
 import './ProfilePage.css'
 import FriendsList from '../../components/FriendsList/FriendsList';
-
-
+import MyPostList from '../../components/MyPostList/MyPostList';
 
 function ProfilePage() {
-
-
 
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
@@ -27,7 +24,6 @@ function ProfilePage() {
     }
 
     const { user_id } = useParams()
-
 
     const loadUser = (user_id) => {
 
@@ -51,7 +47,6 @@ function ProfilePage() {
             .catch(err => console.log(err))
     }
 
-
     const deleteUser = (user_id) => {
 
         userService
@@ -68,54 +63,50 @@ function ProfilePage() {
         !userProfile
             ? <p>Loading....</p>
             :
-
             <Container>
-                <Row className="d-none d-sm-none d-md-block d-lg-block profile">
+                <Row className=" profile">
 
                     <Col sm={4}>
-                        <img src={userProfile.imageUrl} style={{ width: '40%' }} />
-                        <h5>{userProfile.name}</h5>
+                        <img src={userProfile.imageUrl} />
+                        <h4>{userProfile.name}</h4>
                         <p>{userProfile.bio}</p>
+                        {
+                            user._id === userProfile._id ?
 
+                                <>
+                                    <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
+                                    <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
+                                    <Modal show={showModal} onHide={closeModal}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Editar Perfil</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
+                                        </Modal.Body>
+                                    </Modal>
+                                </>
+
+                                : <><Button as="div" variant="dark" onClick={() => addFriend(user_id)}>Agregar Amigo</Button></>
+                        }
                     </Col>
-                    <Col sm={8}>
-                        <p>{userProfile.bio}</p>
-                        <h4>Lista de Amigos </h4>
-                        <p><FriendsList dataFriend={userProfile.friends} /></p>
+                    <Col md={{ span: 2, offset: 2 }}></Col>
+                    <Col sm={4}>
+                        <h4>Amigos</h4>
+                        <div className="d-flex flex-wrap gap-3 friend">
+                            <FriendsList dataFriend={userProfile.friends} loadUser={loadUser} />
+                        </div>
                     </Col>
                 </Row>
-
-                <Button as="div" variant="dark" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
-
-                <Col sm={12}>
+                <Row className='justify-content-center'>
                     <h4>Mis Publicaciones</h4>
-                </Col>
 
-                {
-                    user._id === userProfile._id ?
+                    <MyPostList dataPost={userProfile.createdPosts} />
 
-                        <>
-                            <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
-                            <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
-                            <Modal show={showModal} onHide={closeModal}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Editar Perfil</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
-                                </Modal.Body>
-                            </Modal>
-                        </>
-                        : <></>
-                }
-
-
+                </Row>
                 <Link to="/post">
                     <Button as="div" variant="dark">Volver a las Publicaciones</Button>
                 </Link>
-
-
-            </Container>
+            </Container >
     )
 }
 
