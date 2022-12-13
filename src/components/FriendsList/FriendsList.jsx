@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom"
 
 
 
-const FriendsList = ({ dataFriend }) => {
+const FriendsList = ({ dataFriend, loadUser }) => {
 
 
     console.log(dataFriend)

@@ -20,7 +20,7 @@ const MyPostList = ({ dataPost }) => {
 
 
                             <Col sm={3} key={data._id} >
-                                <h5>{data.title}</h5>
+                                <h6>{data.title}</h6>
                                 <img src={data.imageUrl} style={{ width: '100%' }} alt='foto de la publicación' />
                             </Col>
 

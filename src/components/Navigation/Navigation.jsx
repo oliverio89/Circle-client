@@ -7,6 +7,7 @@ import LoginForm from '../LoginForm/LoginForm'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { AuthContext } from '../../contexts/auth.context';
+import './Navigation.css'
 
 const Navigation = () => {
 
@@ -42,14 +43,14 @@ const Navigation = () => {
     }
 
     return (
-        <Navbar bg="dark" expand="md" variant="dark" className="mb-5">
+        <Navbar className="mb-5 navbar">
             <Container>
 
                 <Link to="/">
                     <Navbar.Brand as="div"> Circle </Navbar.Brand>
                 </Link>
                 <Link to="/aboutus">
-                    <Nav.Link as="div">About Us</Nav.Link>
+                    <Nav.Link as="div">Nosotros</Nav.Link>
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -57,7 +58,7 @@ const Navigation = () => {
                         {user ?
                             <>
                                 <Link to="/post">
-                                    <Nav.Link as="div">Muro de publicaciónes</Nav.Link>
+                                    <Nav.Link as="div">Publicaciónes</Nav.Link>
                                 </Link>
                                 <Link to={`/profile/${user._id}`}>
                                     <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
