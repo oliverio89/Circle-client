@@ -37,13 +37,13 @@
 }
 
 .profile button button:active {
-    color: #2EC4B6;
+    color: #CBF3F0;
     box-shadow: 0 0.2rem #dfd9d9;
     transform: translateY(0.2rem);
 }
 
 .profile button button:hover:not(:disabled) {
-    background: #2EC4B6;
+    background: #CBF3F0;
     color: white;
     text-shadow: 0 0.1rem #bcb4b4;
 }

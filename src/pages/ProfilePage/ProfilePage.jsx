@@ -18,6 +18,9 @@ function ProfilePage() {
     const { user, logoutUser } = useContext(AuthContext)
     const [userProfile, setUserProfile] = useState(null)
 
+    console.log('HOLAAAAA QUE SOY', userProfile?.friends.includes(user._id))
+
+
     const editUser = () => {
         setShowForm('EditProfileForm')
         setShowModal(true)
@@ -46,6 +49,15 @@ function ProfilePage() {
             .then()
             .catch(err => console.log(err))
     }
+
+    const deleteFriend = (user_id) => {
+
+        userService
+            .deleteFriend(user_id)
+            .then()
+            .catch(err => console.log(err))
+    }
+
 
     const deleteUser = (user_id) => {
 
@@ -88,7 +100,21 @@ function ProfilePage() {
                                     </Modal>
                                 </>
 
-                                : <><Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button></>
+                                : <>
+                                    {userProfile.friends.includes(user._id)
+                                        ?
+                                        <>
+                                            <Button variant="" onClick={() => deleteFriend(user_id)}>Eliminar Amigo</Button>
+                                        </>
+                                        :
+                                        <>
+                                            <Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
+                                        </>
+                                    }
+
+
+                                </>
+
                         }
                     </Col>
                     <Col md={{ span: 2, offset: 2 }}></Col>
