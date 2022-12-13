@@ -14,6 +14,10 @@ import NewPostForm from './../../components/NewPostForm/NewPostForm'
 const PostListPage = () => {
 
     const [posts, setPosts] = useState(null)
+    const [geolocation, setGeolocation] = useState({
+        lat: 0,
+        lng: 0
+    })
 
     const [showModal, setShowModal] = useState(false)
 
@@ -26,21 +30,22 @@ const PostListPage = () => {
 
     const loadPosts = () => {
         postService
-            .getPost()
+            .getPost(geolocation)
             .then(({ data }) => setPosts(data))
             .catch(err => console.log(err))
     }
 
 
-    // const fireFinalActions = () => {
-    //     setShowToast(true)
-    //     setToastMessage('Post creado en la BBDD')
-    //     loadPosts()
-    //     closeModal()
-    // }
+
 
     useEffect(() => {
         loadPosts()
+        navigator.geolocation.getCurrentPosition(
+            data => {
+                const hola = data.coords.latitude
+                const adios = data.coords.longitude
+                setGeolocation({ lat: hola, lng: adios })
+            })
     }, [])
 
     return (
