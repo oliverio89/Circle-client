@@ -14,9 +14,9 @@ import NewPostForm from './../../components/NewPostForm/NewPostForm'
 const PostListPage = () => {
 
     const [posts, setPosts] = useState(null)
-    const [geolocation, setGeolocation] = useState({
-        lat: 0,
-        lng: 0
+    const [deviceLocation, setGeolocation] = useState({
+        lat: null,
+        lng: null
     })
 
     const [showModal, setShowModal] = useState(false)
@@ -30,23 +30,30 @@ const PostListPage = () => {
 
     const loadPosts = () => {
         postService
-            .getPost(geolocation)
-            .then(({ data }) => setPosts(data))
+            .getPost(deviceLocation)
+            .then(({ data }) => {
+                console.log(data)
+                setPosts(data)
+            })
             .catch(err => console.log(err))
     }
 
 
-
-
     useEffect(() => {
-        loadPosts()
         navigator.geolocation.getCurrentPosition(
             data => {
                 const hola = data.coords.latitude
                 const adios = data.coords.longitude
                 setGeolocation({ lat: hola, lng: adios })
-            })
+            },
+            err => console.log('ERROR GEOLOCATION', err))
+
     }, [])
+
+
+    useEffect(() => {
+        deviceLocation.lat != null && loadPosts()
+    }, [deviceLocation])
 
     return (
 

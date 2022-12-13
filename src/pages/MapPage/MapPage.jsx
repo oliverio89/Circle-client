@@ -37,7 +37,7 @@ function MyComponent() {
                 lng: data.coords.longitude
             }
 
-            const bounds = new window.google.maps.LatLngBounds(center)
+            const bounds = new window.google.maps.LatLngBounds(center, { lat: 0, lng: 0 })
 
             map.fitBounds(bounds)
 

@@ -21,9 +21,8 @@ class PostService {
     }
 
 
-    getPost(geolocation) {
-        console.log('soy geolocation', geolocation)
-        return this.api.get('/getAllPosts', geolocation)
+    getPost(deviceLocation) {
+        return this.api.get(`/getAllPosts?lat=${deviceLocation.lat}&lng=${deviceLocation.lng}`)
     }
 
     getOnePost(post_id) {

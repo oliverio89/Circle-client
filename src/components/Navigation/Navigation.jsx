@@ -30,7 +30,7 @@ const Navigation = () => {
     const Navigate = useNavigate()
 
     const fireFinalActions = () => {
-        console.log('Estoy llegando')
+
         Navigate('/post')
         closeModal()
     }
