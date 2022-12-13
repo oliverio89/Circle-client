@@ -37,7 +37,7 @@ function ProfilePage() {
 
     useEffect(() => {
         loadUser(user_id)
-    }, [])
+    }, [user_id])
 
     const addFriend = (user_id) => {
 
@@ -74,8 +74,10 @@ function ProfilePage() {
                             user._id === userProfile._id ?
 
                                 <>
+
                                     <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
                                     <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
+
                                     <Modal show={showModal} onHide={closeModal}>
                                         <Modal.Header closeButton>
                                             <Modal.Title>Editar Perfil</Modal.Title>
@@ -86,7 +88,7 @@ function ProfilePage() {
                                     </Modal>
                                 </>
 
-                                : <><Button as="div" variant="dark" onClick={() => addFriend(user_id)}>Agregar Amigo</Button></>
+                                : <><Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button></>
                         }
                     </Col>
                     <Col md={{ span: 2, offset: 2 }}></Col>
@@ -96,8 +98,12 @@ function ProfilePage() {
                             <FriendsList dataFriend={userProfile.friends} loadUser={loadUser} />
                         </div>
                     </Col>
+                    <Link to="/post">
+                        <Button variant="">Publicaciones</Button>
+                    </Link>
                 </Row>
-                <Row className='justify-content-center'>
+                <br />
+                <Row className='justify-content-center publi'>
                     <h4>Mis Publicaciones</h4>
 
                     <MyPostList dataPost={userProfile.createdPosts} />
@@ -109,9 +115,6 @@ function ProfilePage() {
                     }
 
 
-                    <Link to="/post">
-                        <Button as="div" variant="dark">Volver a las Publicaciones</Button>
-                    </Link>
                 </Row>
             </Container>
     )
