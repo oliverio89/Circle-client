@@ -16,11 +16,12 @@ const ReportButton = ({ post_id, reportes, loadPosts }) => {
 
 
         <>
-            <button className="report button" onClick={addReport}>
+            <button className="reportbutton" onClick={addReport}>
                 {
                     reportes.includes(user._id) ?
-                        "❌reported"
-                        : "report"
+                        <h5>❌☠️</h5>
+                        :
+                        <h5>☠️？</h5>
                 }
             </button>
         </>

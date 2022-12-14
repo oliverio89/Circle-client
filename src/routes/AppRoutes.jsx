@@ -7,7 +7,7 @@ import PostDetailsPage from "../pages/PostDetailsPage/PostDetailsPage"
 import AboutusPage from "../pages/AboutusPage/AboutusPage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
 import PanelAdminPage from "../pages/PanelAdminPage/PanelAdminPage"
-
+import HomePage from "../pages/HomePage/HomePage"
 import MyComponent from "../pages/MapPage/MapPage"
 
 
@@ -15,7 +15,7 @@ const AppRoutes = () => {
 
     return (
         <Routes>
-            <Route path="/" element={<p>Circle</p>} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/acceder" element={<LoginPage />} />
             <Route path="/registro" element={<SignupPage />} />
             <Route path="/aboutus" element={<AboutusPage />} />

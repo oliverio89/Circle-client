@@ -1,7 +1,14 @@
 .navbar {
     background-color: #FFBF69 !important;
+
 }
 
 a {
     text-decoration: none;
+}
+
+
+.logopage img {
+    width: 30%;
+    height: 30%;
 }

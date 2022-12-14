@@ -103,6 +103,8 @@ function ProfilePage() {
                 <Row className=" profile">
 
                     <Col sm={4} key={userProfile._id} >
+                        <br />
+                        <br />
                         <img src={userProfile.imageUrl} alt="" />
                         <h4>{userProfile.name}</h4>
                         <p>{userProfile.bio}</p>
@@ -152,6 +154,8 @@ function ProfilePage() {
                     </Col>
                     <Col md={{ span: 2, offset: 2 }}></Col>
                     <Col sm={4}>
+                        <br />
+                        <br />
                         <h4>Amigos</h4>
                         <div className="d-flex flex-wrap gap-3 friend">
                             <FriendsList dataFriend={userProfile.friends} loadUser={loadUser} />

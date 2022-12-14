@@ -1,0 +1,23 @@
+.muroName {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.postsContanier {
+    margin-top: 50px;
+}
+
+.flotanteDiv {
+    position: fixed;
+    top: 100px
+}
+
+.orangeHeart {
+    color: #ff9f1c
+}
+
+.postsContanier .btns Button {
+    background-color: #ffbf69;
+    border: none;
+
+}
