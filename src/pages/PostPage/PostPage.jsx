@@ -68,7 +68,7 @@ const PostListPage = () => {
                     </ButtonGroup>
                 </div>
                 {!posts ? <Loader /> : <PostList posts={posts} loadPosts={loadPosts} />}
-                <hr />
+
 
             </Container>
 

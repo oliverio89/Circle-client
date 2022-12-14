@@ -2,6 +2,8 @@
     max-width: 900px;
     height: auto;
     margin-bottom: 50px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 5px #ffbf69;
 }
 
 .fotoperfil {
