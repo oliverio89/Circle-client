@@ -1,3 +1,7 @@
 .navbar {
     background-color: #FFBF69 !important;
 }
+
+a {
+    text-decoration: none;
+}
