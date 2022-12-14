@@ -1,3 +1,20 @@
+.detailscard {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 50px;
+
+}
+
+.detallesPost {
+    margin-top: 50px !important;
+}
+
 .logoCute {
     text-decoration: none !important;
+    color: black;
+}
+
+.volver {
+    display: flex !important;
+    justify-content: space-around;
 }

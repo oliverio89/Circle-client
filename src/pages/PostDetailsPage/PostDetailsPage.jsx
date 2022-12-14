@@ -5,6 +5,17 @@ import postService from "../../services/post.service"
 import { AuthContext } from './../../contexts/auth.context'
 import commentService from "../../services/comment.service"
 import { useNavigate } from "react-router-dom"
+import "./PostDetailsPage.css"
+
+import {
+    MDBCard,
+    MDBCardTitle,
+    MDBCardText,
+    MDBCardBody,
+    MDBCardImage,
+    MDBRow,
+    MDBCol
+} from 'mdb-react-ui-kit';
 
 const PostDetailsPage = () => {
 
@@ -68,86 +79,64 @@ const PostDetailsPage = () => {
     }, [])
 
 
-
     return (
-
-        <Container>
-
+        <MDBCard className="detailscard">
             {
                 !post
                     ?
                     <h1>CARGANDO</h1>
                     :
-                    <>
-                        <h1 className="mb-4">Detalles de {post.title}</h1>
-                        <h2>Created:{post.createdAt}</h2>
 
-                        <Link to={`/profile/${post.owner}`}>
-                            <Nav.Link as="div" className="logoCute">🍩ᗯᑎEᖇ
-                            </Nav.Link>
-                        </Link>
-                        <hr />
-
-                        <Row>
-
-                            <Col md={{ span: 6, offset: 1 }}>
-                                <h3>Especificaciones</h3>
-                                <p>{post.description}</p>
+                    <MDBRow className='g-0'>
+                        <MDBCol md='7'>
+                            <MDBCardImage src={post.imageUrl} alt='...' fluid />
+                        </MDBCol>
+                        <MDBCol md='5'>
+                            <MDBCardBody>
+                                <MDBCardTitle>Detalles de {post.title}</MDBCardTitle>
                                 <hr />
+                                <MDBCardText> <Link to={`/profile/${post.owner}`}>
+                                    <Nav.Link as="div" className="logoCute">🍩ᗯᑎEᖇ
+                                    </Nav.Link>
+                                </Link>
+                                </MDBCardText>
+                                <MDBCardText>
+                                    {post.description}
+                                </MDBCardText>
+                                <MDBCardText>
+                                    {
+                                        post.comments.map((elem) => {
 
-                                {
-                                    post.comments.map((comment) => {
-
-                                        return (
-                                            < Row className="d-none d-sm-none d-md-block d-lg-block coment" key={comment._id} >
-
-                                                <div className="col-md-6" >
-                                                    <Card.Text>{comment.description}</Card.Text>
-                                                    {user._id === comment.owner._id ?
-                                                        <>
-                                                            <Button variant="danger" size="sm" onClick={() => deleteComment(comment._id)}>Eliminar</Button>
-                                                        </>
-                                                        :
-                                                        <> </>
-                                                    }
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <Link to={`/profile/${comment.owner._id}`}>
+                                            return (
+                                                < div className="commentContainer" key={elem._id} >
+                                                    <Link to={`/profile/${elem.owner?._id}`}>
                                                         <Nav.Link as="div">
-                                                            <img src={comment.owner.imageUrl} alt='fotoperfil' />
+                                                            <img src={elem.owner?.imageUrl} alt='fotoperfil' />
                                                         </Nav.Link>
                                                     </Link>
+                                                    <p> ✍️        {elem.description}</p>
                                                 </div>
-                                            </Row>
-                                        )
-                                    })
-                                }
-
-
-
-                                <Link to="/post">
-                                    <Button as="div" variant="dark">Volver al Muro</Button>
-                                </Link>
-
-                                {
-                                    (user.role === "ADMIN") &&
-                                    <Button variant="danger" size="sm" onClick={() => deletePost(post_id)}>Eliminar el post</Button>
-                                }
-
-
-                            </Col>
-
-                            <Col md={{ span: 4 }}>
-                                <img src={post.imageUrl} style={{ width: '100%' }} alt="h" />
-                            </Col>
-
-                        </Row>
-                    </>
+                                            )
+                                        })
+                                    }
+                                </MDBCardText>
+                                <div className="volver">
+                                    <Link to="/post">
+                                        <Button as="div" variant="dark">Volver al Muro</Button>
+                                    </Link>
+                                    {
+                                        (user.role === "ADMIN" || user._id === post.owner) &&
+                                        <Button variant="danger" size="sm" onClick={() => deletePost(post_id)}>Eliminar el post</Button>
+                                    }
+                                </div>
+                            </MDBCardBody>
+                        </MDBCol>
+                    </MDBRow>
             }
-
-        </Container>
+        </MDBCard>
     )
 }
 
 export default PostDetailsPage
+
+

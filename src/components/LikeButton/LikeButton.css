@@ -1,41 +1,14 @@
-.button {
-    padding: 0 20px 0 10px;
-    border-radius: 30px;
-    box-shadow: 0px 0px 3px 3px #FF9F1C;
-    background-color: #FFBF69;
-    color: white;
-    font-size: 17px;
-    border: none;
-    display: flex;
-    align-items: center;
-    transition: all .5s ease-in-out;
-    letter-spacing: 2px;
-}
-
-.button:hover {
-    background-color: #CBF3F0;
-    transition: all .5s ease-in-out;
+.dislikeBtn {
+    background-color: transparent !important;
+    box-shadow: none !important;
 
 }
 
-.button::before {
-    content: "";
-    background-size: 100%;
-    background-repeat: no-repeat;
-    color: transparent;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    display: block;
-    margin-right: 5px;
-    transition: all .9s ease-in-out;
+.likeBtn {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
-.button:hover:before {
-    transition: all .9s ease-in-out;
-    transform: rotate(-1turn);
-}
-
-.btn-dislike {
-    background: #FF9F1C !important
+button h5 {
+    font-family: sans-serif;
 }
