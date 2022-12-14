@@ -114,7 +114,14 @@ const PostDetailsPage = () => {
                                                             <img src={elem.owner?.imageUrl} alt='fotoperfil' />
                                                         </Nav.Link>
                                                     </Link>
-                                                    <p> ✍️        {elem.description}</p>
+                                                    <p> ✍️ {elem.description}</p>
+
+                                                    {(user._id === elem.owner._id) &&
+                                                        <>
+                                                            <Button variant="deleteComment" size="sm" onClick={() => deleteComment(elem._id)}>❌</Button>
+                                                        </>
+
+                                                    }
                                                 </div>
                                             )
                                         })

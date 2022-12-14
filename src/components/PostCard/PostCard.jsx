@@ -90,7 +90,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                                     < div className="commentContainer" key={elem._id} >
                                         <Link to={`/profile/${elem.owner?._id}`}>
                                             <Nav.Link as="div">
-                                                <img src={elem.owner?.imageUrl} alt='fotoperfil' />
+                                                <img src={elem.owner?.imageUrl} alt='' />
                                             </Nav.Link>
                                         </Link>
                                         <p>{elem.description}</p>
