@@ -13,7 +13,7 @@ const SignupForm = ({ fireFinalActions }) => {
         email: '',
         password: '',
         name: '',
-        imageUrl: '',
+        imageUrl: "https://res.cloudinary.com/dtcpa2jtc/image/upload/v1671041357/imagen_por_defecto_xwpnsv.webp",
         bio: ''
     })
 
