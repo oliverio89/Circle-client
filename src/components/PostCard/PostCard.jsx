@@ -14,7 +14,7 @@ import ReportButton from '../ReportButton/ReportButton';
 
 
 
-function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comments, likes, reportes }) {
+function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comments, likes, reportes, createdAt }) {
 
     const { user } = useContext(AuthContext)
     const [showModal, setShowModal] = useState(false)
@@ -35,6 +35,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
     }
 
 
+
     return (
         <Card className="mb-4 PostCard">
             {imageUrl ?
@@ -45,6 +46,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
             }
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
+                <Card.Title>Created:{createdAt}</Card.Title>
 
                 <Link to={`/detalles/${_id}`}>
                     <Button variant="dark" size="sm">Ver detalles</Button>
@@ -64,7 +66,6 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                                     <Card.Text>{elem.description}</Card.Text>
                                 </div>
                                 <div className="col-md-6">
-
                                     <Link to={`/profile/${elem.owner?._id}`}>
                                         <Nav.Link as="div">
                                             <img src={elem.owner?.imageUrl} alt='fotoperfil' />

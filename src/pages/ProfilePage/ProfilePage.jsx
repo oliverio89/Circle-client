@@ -34,7 +34,19 @@ function ProfilePage() {
                 setUserProfile(elm.data)
             })
             .catch(err => console.log(err))
+
+
     }
+
+    console.log("soy user", user, "i have friends", user.friends)
+    console.log("UserProfile id es", userProfile)
+
+
+    useEffect(() => {
+        loadUser(user_id)
+    }, [user_id])
+
+
 
     const addFriend = (user_id) => {
 
@@ -79,12 +91,13 @@ function ProfilePage() {
             <Container>
                 <Row className=" profile">
 
-                    <Col sm={4}>
-                        <img src={userProfile.imageUrl} />
+                    <Col sm={4} key={userProfile._id} >
+                        <img src={userProfile.imageUrl} alt="" />
                         <h4>{userProfile.name}</h4>
                         <p>{userProfile.bio}</p>
                         {
-                            user._id === userProfile._id ?
+                            user._id === userProfile._id
+                                ?
 
                                 <>
 
@@ -102,18 +115,21 @@ function ProfilePage() {
                                 </>
 
                                 : <>
-                                    {userProfile.friends.includes(user._id)
-                                        ?
-                                        <>
-                                            <Button variant="" onClick={() => deleteFriend(user_id)}>Eliminar Amigo</Button>
-                                        </>
-                                        :
-                                        <>
-                                            <Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
-                                        </>
+                                    {
+                                        user.friends.includes(userProfile._id)
+                                            ?
+                                            <>
+                                                <Button variant="" onClick={() => deleteFriend(user_id)}>Eliminar Amigo</Button>
+                                            </>
+                                            :
+                                            <>
+                                                <Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
+                                            </>
+
+
+
+
                                     }
-
-
                                 </>
 
                         }
