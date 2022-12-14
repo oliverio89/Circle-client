@@ -67,6 +67,8 @@ const PostDetailsPage = () => {
         loadOnePost()
     }, [])
 
+
+
     return (
 
         <Container>
@@ -78,10 +80,10 @@ const PostDetailsPage = () => {
                     :
                     <>
                         <h1 className="mb-4">Detalles de {post.title}</h1>
+                        <h2>Created:{post.createdAt}</h2>
 
                         <Link to={`/profile/${post.owner}`}>
-                            <Nav.Link as="div">
-                                <p>{post.owner}</p>
+                            <Nav.Link as="div" className="logoCute">🍩ᗯᑎEᖇ
                             </Nav.Link>
                         </Link>
                         <hr />
