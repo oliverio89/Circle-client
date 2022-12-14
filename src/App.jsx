@@ -14,7 +14,6 @@ function App() {
     <div className="App">
       <Navigation />
       <AppRoutes />
-      <Footer />
       <UserMessage />
     </div>
   );

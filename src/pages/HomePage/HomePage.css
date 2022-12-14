@@ -1,0 +1,8 @@
+.IndexCarousel {
+    height: 500px;
+}
+
+.IndexCarousel img {
+    object-fit: cover;
+    height: 100%;
+}
