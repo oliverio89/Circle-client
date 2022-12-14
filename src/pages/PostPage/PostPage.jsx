@@ -4,7 +4,8 @@ import postService from "../../services/post.service"
 import { Container, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Loader from "../../components/Loader/Loader"
-
+import './PostPage.css'
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 import { MessageContext } from '../../contexts/userMessage.context'
 import { AuthContext } from '../../contexts/auth.context'
@@ -58,15 +59,20 @@ const PostListPage = () => {
     return (
 
         <>
-            <Container>
-                <h1>Muro de comentarios</h1>
-                {user && <Button onClick={openModal} variant="dark" size="lm">Crear un nuevo Post</Button>}
-                <hr />
+            <Container className="postsContanier" >
+                <div className="flotanteDiv">
+                    <h3 className="muroName">🐇𝑀𝓊𝓇ｏ 𝒹𝑒 𝒫ｏ𝓈𝓉𝓈🐇</h3>
+                    <ButtonGroup vertical className="btns">
+                        {user && <Button onClick={openModal} variant="dark" size="lm"> ♥ crear un nuevo post ♥</Button>}
+                        <h5 className="orangeHeart">♥ ♥ ♥ ♥ ♥ ♥  𝒸𝒾𝓇𝒸𝓁𝑒  ♥ ♥ ♥ ♥ ♥ ♥ </h5>
+                        <Link to="/">
+                            <Button className="btnVolver" variant="dark">Volver a inicio</Button>
+                        </Link>
+                    </ButtonGroup>
+                </div>
                 {!posts ? <Loader /> : <PostList posts={posts} loadPosts={loadPosts} />}
                 <hr />
-                <Link to="/">
-                    <Button variant="dark">Volver a inicio</Button>
-                </Link>
+
             </Container>
 
             <Modal show={showModal} onHide={closeModal}>

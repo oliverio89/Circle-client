@@ -15,6 +15,10 @@ const PostList = ({ posts, loadPosts }) => {
             })}
         </Row>
     )
+
+
+
+
 }
 
 export default PostList
