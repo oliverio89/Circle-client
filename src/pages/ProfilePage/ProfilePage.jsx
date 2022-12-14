@@ -18,7 +18,7 @@ function ProfilePage() {
     const { user, logoutUser } = useContext(AuthContext)
     const [userProfile, setUserProfile] = useState(null)
 
-    console.log('HOLAAAAA QUE SOY', userProfile?.friends.includes(user._id))
+    console.log('HOLAAAAA QUE SOY', userProfile?.friends.includes(userProfile._id))
 
 
     const editUser = () => {
@@ -104,13 +104,13 @@ function ProfilePage() {
                                     {userProfile.friends.includes(user._id)
                                         ?
                                         <>
-                                            <Button variant="" onClick={() => deleteFriend(user_id)}>Eliminar Amigo</Button>
                                         </>
                                         :
                                         <>
-                                            <Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
                                         </>
                                     }
+                                    <Button variant="" onClick={() => deleteFriend(user_id)}>Eliminar Amigo</Button>
+                                    <Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
 
 
                                 </>

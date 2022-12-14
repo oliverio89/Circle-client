@@ -161,9 +161,9 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                                     <Card.Text>{elem.description}</Card.Text>
                                 </div>
                                 <div className="col-md-6">
-                                    <Link to={`/profile/${elem.owner._id}`}>
+                                    <Link to={`/profile/${elem.owner?._id}`}>
                                         <Nav.Link as="div">
-                                            <img src={elem.owner.imageUrl} alt='fotoperfil' />
+                                            <img src={elem.owner?.imageUrl} alt='fotoperfil' />
                                         </Nav.Link>
                                     </Link>
                                 </div>
@@ -185,7 +185,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                 </>
 
                 {
-                    (owner === user?._id || user.role === "ADMIN") &&
+                    (owner._id === user?._id || user.role === "ADMIN") &&
 
                     <>
                         <div className="d-grid">
