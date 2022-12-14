@@ -31,10 +31,7 @@ const PostListPage = () => {
     const loadPosts = () => {
         postService
             .getPost(deviceLocation)
-            .then(({ data }) => {
-                console.log(data)
-                setPosts(data)
-            })
+            .then(({ data }) => setPosts(data))
             .catch(err => console.log(err))
     }
 

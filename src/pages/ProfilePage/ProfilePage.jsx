@@ -18,8 +18,6 @@ function ProfilePage() {
     const { user, logoutUser } = useContext(AuthContext)
     const [userProfile, setUserProfile] = useState(null)
 
-    console.log('HOLAAAAA QUE SOY', userProfile?.friends.includes(user._id))
-
 
     const editUser = () => {
         setShowForm('EditProfileForm')
@@ -37,10 +35,6 @@ function ProfilePage() {
             })
             .catch(err => console.log(err))
     }
-
-    useEffect(() => {
-        loadUser(user_id)
-    }, [user_id])
 
     const addFriend = (user_id) => {
 
@@ -69,6 +63,13 @@ function ProfilePage() {
             })
             .catch(err => console.error(err))
     }
+
+    useEffect(() => {
+        loadUser(user_id)
+    }, [user_id])
+
+
+
 
     return (
 

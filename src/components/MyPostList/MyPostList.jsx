@@ -6,9 +6,6 @@ import { Link, useParams } from "react-router-dom"
 const MyPostList = ({ dataPost }) => {
 
 
-    console.log('soy data post', dataPost)
-
-
     return (
         !dataPost
             ? <p>Loading....</p>
@@ -35,11 +32,3 @@ const MyPostList = ({ dataPost }) => {
 }
 
 export default MyPostList
-
-                                // <div className="col-md-6">
-                                //     <Link to="/profile">
-                                //         <Nav.Link as="div">
-
-                                //         </Nav.Link>
-                                //     </Link>
-                                // </div>

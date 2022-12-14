@@ -24,6 +24,9 @@ class PostService {
     getPost(deviceLocation) {
         return this.api.get(`/getAllPosts?lat=${deviceLocation.lat}&lng=${deviceLocation.lng}`)
     }
+    getAllPostAdmin() {
+        return this.api.get(`/getAllPostsAdmin`)
+    }
 
     getOnePost(post_id) {
         return this.api.get(`/getOnePost/${post_id}`)
@@ -37,29 +40,17 @@ class PostService {
         return this.api.put(`/editPost/${palabra.id}`, palabra)
     }
 
-    // likeButton
-
     giveLike(comenData) {
         return this.api.put(`/likePost/${comenData}`)
     }
 
-    //quitar el like
     deleteLike(disLikeData) {
         return this.api.put(`/dislikePost/${disLikeData}`)
     }
 
-    // reportar a un post
-
     reportPost(report) {
         return this.api.put(`/reportPost/${report}`)
     }
-
-
-
-
-    // myCreate(post_id) {
-    //     return this.api.put(`/myCreated/${post_id}`)
-    // }
 
     deletePost(post_id) {
         return this.api.delete(`/deletePost/${post_id}`)

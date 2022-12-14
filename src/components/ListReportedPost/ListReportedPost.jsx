@@ -15,7 +15,7 @@ const ListReportedPost = () => {
 
     const loadPosts = () => {
         postService
-            .getPost()
+            .getAllPostAdmin()
             .then(({ data }) => setPosts(data))
             .catch(err => console.log(err))
     }

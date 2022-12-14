@@ -6,9 +6,6 @@ import { Link, useParams } from "react-router-dom"
 const FriendsList = ({ dataFriend, loadUser }) => {
 
 
-    console.log(dataFriend)
-
-
     return (
         !dataFriend
             ? <p>Loading....</p>
