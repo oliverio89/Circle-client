@@ -3,7 +3,7 @@ import { Form, Button, } from "react-bootstrap"
 import userService from "../../services/user.service"
 import uploadServices from "../../services/upload.service"
 
-const EditProfileForm = ({ name, bio, imageUrl, id, }) => {
+const EditProfileForm = ({ name, bio, imageUrl, id, closeModal, refreshToken, loadUserProfile }) => {
     const [userEditData, setUserEditData] = useState({
         name: name,
         bio: bio,
@@ -41,7 +41,11 @@ const EditProfileForm = ({ name, bio, imageUrl, id, }) => {
         e.preventDefault()
         userService
             .editUser(userEditData)
-            .then()
+            .then(() => {
+                closeModal()
+                refreshToken()
+                loadUserProfile()
+            })
             .catch(err => console.log(err))
     }
 

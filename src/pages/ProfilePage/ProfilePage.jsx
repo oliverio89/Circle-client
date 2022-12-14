@@ -15,8 +15,10 @@ function ProfilePage() {
     const [showModal, setShowModal] = useState(false)
     const closeModal = () => setShowModal(false)
     const [showForm, setShowForm] = useState('')
-    const { user, logoutUser } = useContext(AuthContext)
+    const { user, logoutUser, refreshToken } = useContext(AuthContext)
     const [userProfile, setUserProfile] = useState(null)
+
+
 
 
     const editUser = () => {
@@ -38,8 +40,17 @@ function ProfilePage() {
 
     }
 
-    console.log("soy user", user, "i have friends", user.friends)
-    console.log("UserProfile id es", userProfile)
+    const loadUserProfile = () => {
+
+        userService
+            .giveMeUser(userProfile._id)
+            .then((elm) => {
+                setUserProfile(elm.data)
+            })
+            .catch(err => console.log(err))
+    }
+
+
 
 
     useEffect(() => {
@@ -52,7 +63,7 @@ function ProfilePage() {
 
         userService
             .addFriend(user_id)
-            .then()
+            .then(() => refreshToken())
             .catch(err => console.log(err))
     }
 
@@ -60,7 +71,7 @@ function ProfilePage() {
 
         userService
             .deleteFriend(user_id)
-            .then()
+            .then(() => refreshToken())
             .catch(err => console.log(err))
     }
 
@@ -101,7 +112,7 @@ function ProfilePage() {
 
                                 <>
 
-                                    <Button variant="" size="sm" onClick={editUser}>Editar Perfil</Button>
+                                    <Button variant="" size="sm" onClick={() => editUser(userProfile._id)}>Editar Perfil</Button>
                                     <Button variant="" size="sm" onClick={() => deleteUser(userProfile._id)}>Eliminar Perfil</Button>
 
                                     <Modal show={showModal} onHide={closeModal}>
@@ -109,7 +120,7 @@ function ProfilePage() {
                                             <Modal.Title>Editar Perfil</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} />}
+                                            {showForm === 'EditProfileForm' && <EditProfileForm name={userProfile.name} bio={userProfile.bio} imageUrl={userProfile.imageUrl} id={userProfile._id} closeModal={closeModal} refreshToken={refreshToken} loadUserProfile={loadUserProfile} />}
                                         </Modal.Body>
                                     </Modal>
                                 </>
@@ -119,11 +130,16 @@ function ProfilePage() {
                                         user.friends.includes(userProfile._id)
                                             ?
                                             <>
-                                                <Button variant="" onClick={() => deleteFriend(user_id)}>Eliminar Amigo</Button>
+                                                <Button variant="" onClick={() =>
+
+                                                    deleteFriend(user_id)
+                                                }>Eliminar Amigo</Button>
                                             </>
                                             :
                                             <>
-                                                <Button variant="" onClick={() => addFriend(user_id)}>Agregar Amigo</Button>
+                                                <Button variant="" onClick={() =>
+                                                    addFriend(user_id)
+                                                }>Agregar Amigo</Button>
                                             </>
 
 

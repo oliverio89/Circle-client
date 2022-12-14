@@ -28,7 +28,10 @@ class AuthService {
         return this.api.post('/login', userData)
     }
 
-    verify = token => {
+    refreshToken() {
+        return this.api.post('/refreshToken')
+    }
+    verify = () => {
         return this.api.get('/verify')
     }
 }
