@@ -108,7 +108,6 @@ function ProfilePage() {
                         <br />
                         <img src={userProfile.imageUrl} alt="" />
                         <br />
-                        <br />
                         <h4>{userProfile.name}</h4>
                         <p>{userProfile.bio}</p>
                         {
@@ -165,11 +164,9 @@ function ProfilePage() {
                         </div>
                     </Col>
                     <Link to="/post">
-                        <br />
                         <Button variant="">Publicaciones</Button>
                     </Link>
                 </Row>
-                <br />
                 <br />
                 <Row className='justify-content-center publi'>
                     <h4>Mis Publicaciones</h4>
@@ -185,7 +182,6 @@ function ProfilePage() {
 
                 </Row>
             </Container>
-
     )
 }
 
