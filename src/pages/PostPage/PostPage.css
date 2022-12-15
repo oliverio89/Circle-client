@@ -25,6 +25,7 @@
 @media (max-width: 995px) {
     .flotanteDiv {
         position: inherit;
+        margin-bottom: 50px;
 
     }
 }
