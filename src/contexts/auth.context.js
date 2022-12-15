@@ -34,8 +34,8 @@ function AuthProviderWrapper(props) {
         authService
             .refreshToken()
             .then(({ data }) => {
-                console.log(data.authToken)
-                const tokenFromServer = data.authToken
+                console.log(data)
+                const tokenFromServer = data
                 storeToken(tokenFromServer)
                 authenticateUser()
             })

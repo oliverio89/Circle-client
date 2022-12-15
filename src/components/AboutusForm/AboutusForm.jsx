@@ -35,10 +35,10 @@ function AboutusForm() {
                 <br />
                 <h2>¿Qué es Circle?</h2>
                 <br />
-                <h5>Circle nació como una idea del proyecto final del Bootcamp de Desarrollador Web - Full Stack en Ironhack.
-                    Esta nueva red social tiene como idea principal que los usuarios puedan ver a través de publicaciones lo que ocurre a su alrededor y así crear conexiones por proximidad.
-                    Mediante la geolocalización, cada publicación recibe la ubicación actual del usuario y cada persona conectada solo puede ver lo que ha sido publicado en un radio de 5KM.
-                    De esa manera es posible encontrar lugares para visitar, un nuevo lugar para comer, tomar algo  y también conectarse con alguién que esté cerca de tu casa, de tu lugar de trabajo o del lugar que estés visitando en este momento.
+                <h5>Circle nació como una idea para el proyecto final de nuestro Bootcamp de Desarrollador Web - Full Stack en la escuela digital de Ironhack.
+                    Circle es una nueva red social que tiene como idea principal que los usuarios puedan ver a través de publicaciones lo que ocurre a su alrededor y así crear conexiones por proximidad.
+                    Mediante la geolocalización, cada publicación recibe la ubicación actual del usuario y cada persona conectada solo puede ver lo que ha sido publicado en un radio de 5KM de su geolocalización.
+                    De esa manera es posible agregar a personas que se mueven en tu circulo cercano para visitar lugares, comer juntos, tomar algo, incluso comprar y vender material de segunda mano, como conectar a gente que esté sola.
                 </h5>
                 <br />
                 <div>
