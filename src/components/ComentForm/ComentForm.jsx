@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import commentService from '../../services/comment.service'
-
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 
@@ -16,6 +16,8 @@ const ComentForm = ({ closeModal, loadPosts, post_id }) => {
         setCommentData({ ...commentData, [name]: value })
     }
 
+    const [errors, setErrors] = useState([])
+
     const handleCommitSubmit = e => {
         e.preventDefault()
         commentService
@@ -24,6 +26,10 @@ const ComentForm = ({ closeModal, loadPosts, post_id }) => {
                 loadPosts()
                 closeModal()
             })
+            .catch(err => {
+                console.log(err)
+                setErrors(err.response.data.errorMessages)
+            })
     }
 
     return (
@@ -31,6 +37,7 @@ const ComentForm = ({ closeModal, loadPosts, post_id }) => {
             <Form.Group className="mb-3" controlId="description">
                 <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
             </Form.Group>
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit" >Pubilicar tu comentario</Button>

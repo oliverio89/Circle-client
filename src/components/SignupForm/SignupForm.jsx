@@ -3,8 +3,8 @@ import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.service"
 import { useNavigate } from 'react-router-dom'
 import { MessageContext } from './../../contexts/userMessage.context'
-// configurar forma de recargar fotos
 import uploadServices from "../../services/upload.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 const SignupForm = ({ fireFinalActions }) => {
 
@@ -14,9 +14,11 @@ const SignupForm = ({ fireFinalActions }) => {
         password: '',
         name: '',
         imageUrl: "https://res.cloudinary.com/dtcpa2jtc/image/upload/v1671041357/imagen_por_defecto_xwpnsv.webp",
-        bio: ''
+        bio: '',
+        role: 'USER'
     })
 
+    const [errors, setErrors] = useState([])
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -39,10 +41,10 @@ const SignupForm = ({ fireFinalActions }) => {
                 fireFinalActions()
                 navigate('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
-    // configurar forma de recargar fotos
+
     const [loadingImage, setLoadingImage] = useState(false)
     const handleFileUpload = e => {
 
@@ -69,7 +71,7 @@ const SignupForm = ({ fireFinalActions }) => {
         <Form onSubmit={handleSubmit}>
 
             <Form.Group className="mb-3" controlId="username">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Nombre de Usuario</Form.Label>
                 <Form.Control type="text" minLength={2} value={username} onChange={handleInputChange} name="username" />
             </Form.Group>
 
@@ -85,19 +87,20 @@ const SignupForm = ({ fireFinalActions }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Nombre</Form.Label>
                 <Form.Control type="text" value={name} onChange={handleInputChange} name="name" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="imageUrl">
-                <Form.Label>Image</Form.Label>
+                <Form.Label>Imagen del Perfíl</Form.Label>
                 <Form.Control type="file" onChange={handleFileUpload} name="imageUrl" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="bio">
-                <Form.Label>Bio</Form.Label>
+                <Form.Label>Biografía</Form.Label>
                 <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Registrar'}</Button>

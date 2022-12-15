@@ -1,10 +1,9 @@
 import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import authService from "../../services/auth.service"
 import { MessageContext } from './../../contexts/userMessage.context'
-
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 const LoginForm = ({ fireFinalActions }) => {
 
@@ -19,9 +18,11 @@ const LoginForm = ({ fireFinalActions }) => {
         setSignupData({ ...signupData, [name]: value })
     }
 
-    const navigate = useNavigate()
+
     const { storeToken, authenticateUser } = useContext(AuthContext)
     const { setShowToast, setToastMessage } = useContext(MessageContext)
+
+    const [errors, setErrors] = useState([])
 
     const handleSubmit = e => {
 
@@ -30,15 +31,18 @@ const LoginForm = ({ fireFinalActions }) => {
         authService
             .login(signupData)
             .then(({ data }) => {
-                setShowToast(true)
-                setToastMessage('Sesión iniciada')
                 const tokenFromServer = data.authToken
                 storeToken(tokenFromServer)
                 authenticateUser()
+                setShowToast(true)
+                setToastMessage('Sesión iniciada')
                 fireFinalActions()
 
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                setErrors(err.response.data.errorMessages)
+            })
     }
 
     const { password, email } = signupData
@@ -56,6 +60,7 @@ const LoginForm = ({ fireFinalActions }) => {
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
             </Form.Group>
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
             <div className="d-grid">
                 <Button variant="dark" type="submit">Acceder</Button>
             </div>

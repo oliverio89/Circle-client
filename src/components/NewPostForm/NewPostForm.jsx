@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Form, Button, } from "react-bootstrap"
 import postService from "../../services/post.service"
 import uploadServices from "../../services/upload.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 const NewPostForm = ({ closeModal, loadPosts }) => {
 
@@ -36,7 +37,7 @@ const NewPostForm = ({ closeModal, loadPosts }) => {
                 setPostData({ ...postData, imageUrl: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
 
@@ -51,11 +52,12 @@ const NewPostForm = ({ closeModal, loadPosts }) => {
                 loadPosts()
                 closeModal()
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const { title, description, imageUrl, lat, lng } = postData
 
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -84,6 +86,7 @@ const NewPostForm = ({ closeModal, loadPosts }) => {
                 <Form.Label>Imagen (URL)</Form.Label>
                 <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Post'}</Button>
