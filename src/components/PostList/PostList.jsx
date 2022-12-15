@@ -4,7 +4,7 @@ import PostCard from "../PostCard/PostCard"
 const PostList = ({ posts, loadPosts }) => {
 
     return (
-        <Row>
+        <Row className="postList">
             {posts.map(elm => {
 
                 return (
