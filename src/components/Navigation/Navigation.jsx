@@ -40,11 +40,11 @@ const Navigation = () => {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
+            <Container className='circle'>
                 <h2>Circle</h2>
                 <Link to="/" className='logopage'>
                     <Nav.Link as="div">
-                        <img src="https://res.cloudinary.com/dtcpa2jtc/image/upload/v1671028203/logo_en_naranja_arubcs.png" />
+                        <img src="https://res.cloudinary.com/dtcpa2jtc/image/upload/v1671101581/logo_naranja_80_cxoygh.png" />
                     </Nav.Link>
                 </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -59,7 +59,7 @@ const Navigation = () => {
                             {user ?
                                 <>
                                     <Link to="/post">
-                                        <Nav.Link as="div">Publicaciónes</Nav.Link>
+                                        <Nav.Link as="div">Publicaciones</Nav.Link>
                                     </Link>
                                     <Link to={`/profile/${user._id}`}>
                                         <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
@@ -71,7 +71,7 @@ const Navigation = () => {
                                         </Link>
                                     }
 
-                                    <Nav.Link as="div" onClick={logout}>Cerrar sesión</Nav.Link>
+                                    <Nav.Link as="div" onClick={logout}>Cerrar Sesión</Nav.Link>
                                     <Link to="/map">
                                         <Nav.Link as="div">MAP</Nav.Link>
                                     </Link>
