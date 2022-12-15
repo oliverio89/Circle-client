@@ -1,12 +1,11 @@
 .navbar {
-    background-color: #FFBF69 !important;
-
+    background-color: #FF9f1c !important;
 }
 
 a {
     text-decoration: none;
+    color: white;
 }
-
 
 .logopage img {
     width: 30%;
@@ -29,4 +28,8 @@ a {
     border-radius: 5%;
     font-size: 20px;
     color: rgba(255, 255, 255, 0.6)
+}
+
+.circle {
+    color: white;
 }
