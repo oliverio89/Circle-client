@@ -75,7 +75,7 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                             {description}
                         </MDBCardText>
                         <MDBCardText>
-                            <small className='text-muted'>Created:{dayName}</small>
+                            <small className='text-muted'>{owner.username}  created:{dayName}</small>
                         </MDBCardText>
                         <hr />
                         <MDBCardText className='btnContainer'>

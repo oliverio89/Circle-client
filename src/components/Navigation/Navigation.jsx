@@ -49,62 +49,65 @@ const Navigation = () => {
                 </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
+
+
+
+
                     <Nav className="me-auto">
                         <Link to="/aboutus">
                             <Nav.Link as="div">About Us</Nav.Link>
                         </Link>
-
-
-                        <Nav className="me-auto">
-                            {user ?
-                                <>
-                                    <Link to="/post">
-                                        <Nav.Link as="div">Publicaciones</Nav.Link>
-                                    </Link>
-                                    <Link to={`/profile/${user._id}`}>
-                                        <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
-                                    </Link>
-                                    {
-                                        (user.role === "ADMIN") &&
-                                        <Link to="/admin">
-                                            <Nav.Link as="div">Panel de Administrador</Nav.Link>
-                                        </Link>
-                                    }
-
-                                    <Nav.Link as="div" onClick={logout}>Cerrar Sesión</Nav.Link>
-                                    <Link to="/map">
+                        {!user ?
+                            <>
+                                <div className='con-btnStart'>
+                                    <Button onClick={SignUp} variant="dark btnStart" size="sm"> ♥𝓈𝓉𝒶𝓇𝓉♥</Button>
+                                </div>
+                                {/* <Link to="/map">
                                         <Nav.Link as="div">MAP</Nav.Link>
-                                    </Link>
-                                </>
-                                :
-                                <>
-                                    <div className='con-btnStart'>
-                                        <Button onClick={SignUp} variant="dark btnStart" size="sm"> ♥𝓈𝓉𝒶𝓇𝓉♥</Button>
+                                    </Link> */}
+
+                                <Modal show={showModal} onHide={closeModal}>
+                                    <div className='btnSigLog'>
+                                        <Button onClick={SignUp} variant="dark" size="sm">SignUp</Button>
+                                        🍬𝒸𝒾𝓇𝒸𝓁𝑒
+                                        <Button onClick={LogIn} variant="dark" size="sm">LogIn</Button>
                                     </div>
-                                    <Link to="/map">
-                                        <Nav.Link as="div">MAP</Nav.Link>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Welcome to Circle!</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        {showForm === 'signup' && <SignupForm fireFinalActions={fireFinalActions} />}
+                                        {showForm === 'login' && <LoginForm fireFinalActions={fireFinalActions} />}
+                                    </Modal.Body>
+                                </Modal>
+                            </>
+                            :
+                            <>
+                                <Link to="/post">
+                                    <Nav.Link as="div">Publicaciones</Nav.Link>
+                                </Link>
+                                <Link to={`/profile/${user._id}`}>
+                                    <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
+                                </Link>
+                                {
+                                    (user.role === "ADMIN") &&
+                                    <Link to="/admin">
+                                        <Nav.Link as="div">Panel de Administrador</Nav.Link>
                                     </Link>
+                                }
 
-                                    <Modal show={showModal} onHide={closeModal}>
-                                        <div className='btnSigLog'>
-                                            <Button onClick={SignUp} variant="dark" size="sm">SignUp</Button>
-                                            🍬𝒸𝒾𝓇𝒸𝓁𝑒
-                                            <Button onClick={LogIn} variant="dark" size="sm">LogIn</Button>
-                                        </div>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Welcome to Circle!</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            {showForm === 'signup' && <SignupForm fireFinalActions={fireFinalActions} />}
-                                            {showForm === 'login' && <LoginForm fireFinalActions={fireFinalActions} />}
-                                        </Modal.Body>
-                                    </Modal>
+                                <Nav.Link as="div" onClick={logout}>Cerrar Sesión</Nav.Link>
+                                {/* <Link to="/map">
+                                        <Nav.Link as="div">MAP</Nav.Link>
+                                    </Link> */}
 
-                                </>
-                            }
+                            </>
 
-                        </Nav>
+
+                        }
+
                     </Nav>
+
 
                 </Navbar.Collapse>
             </Container>
