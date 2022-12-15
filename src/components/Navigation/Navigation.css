@@ -12,3 +12,21 @@ a {
     width: 30%;
     height: 30%;
 }
+
+.btnSigLog {
+    margin-top: 10px;
+}
+
+.btnSigLog button {
+    background-color: #FFBF69;
+    border: none;
+    margin-left: 10px;
+}
+
+.btnStart {
+    background-color: transparent;
+    border: none;
+    border-radius: 5%;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6)
+}

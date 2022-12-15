@@ -78,16 +78,17 @@ const Navigation = () => {
                                 </>
                                 :
                                 <>
-                                    <div>
-                                        <Button onClick={SignUp} variant="dark" size="sm">SignUp/login</Button>
+                                    <div className='con-btnStart'>
+                                        <Button onClick={SignUp} variant="dark btnStart" size="sm"> ♥𝓈𝓉𝒶𝓇𝓉♥</Button>
                                     </div>
                                     <Link to="/map">
                                         <Nav.Link as="div">MAP</Nav.Link>
                                     </Link>
 
                                     <Modal show={showModal} onHide={closeModal}>
-                                        <div>
+                                        <div className='btnSigLog'>
                                             <Button onClick={SignUp} variant="dark" size="sm">SignUp</Button>
+                                            🍬𝒸𝒾𝓇𝒸𝓁𝑒
                                             <Button onClick={LogIn} variant="dark" size="sm">LogIn</Button>
                                         </div>
                                         <Modal.Header closeButton>

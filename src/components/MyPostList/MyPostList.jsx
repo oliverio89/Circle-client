@@ -8,7 +8,7 @@ const MyPostList = ({ dataPost }) => {
 
     return (
         !dataPost
-            ? <p>Loading....</p>
+            ? <p> 🅻🅾🅰🅳🅸🅽🅶....</p>
             :
             <>
                 {

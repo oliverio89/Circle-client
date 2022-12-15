@@ -8,7 +8,7 @@ import {
     MDBRow,
     MDBCol
 } from 'mdb-react-ui-kit';
-import { Button, ButtonGroup, Modal, Row, Nav } from 'react-bootstrap';
+import { Button, Accordion, Modal, Row, Nav } from 'react-bootstrap';
 import { AuthContext } from './../../contexts/auth.context'
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
@@ -82,23 +82,28 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                             <LikeButton post_id={_id} likes={likes} loadPosts={loadPosts} />
                             <ReportButton post_id={_id} reportes={reportes} loadPosts={loadPosts} />
                         </MDBCardText>
-                        <p>𝓌𝑒𝓁𝒸❁𝓂𝑒 𝓉🍬 𝒸𝒾𝓇𝒸𝓁𝑒⋆</p>
-                        {
-                            comments?.map((elem) => {
+                        <Accordion>
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>Comentarios({comments?.length})</Accordion.Header>
+                                <Accordion.Body>
+                                    {
+                                        comments?.map((elem) => {
 
-                                return (
-                                    < div className="commentContainer" key={elem._id} >
-                                        <Link to={`/profile/${elem.owner?._id}`}>
-                                            <Nav.Link as="div">
-                                                <img src={elem.owner?.imageUrl} alt='' />
-                                            </Nav.Link>
-                                        </Link>
-                                        <p>{elem.description}</p>
-                                    </div>
-                                )
-                            })
-                        }
-
+                                            return (
+                                                < div className="commentContainer" key={elem._id} >
+                                                    <Link to={`/profile/${elem.owner?._id}`}>
+                                                        <Nav.Link as="div">
+                                                            <img src={elem.owner?.imageUrl} alt='' />
+                                                        </Nav.Link>
+                                                    </Link>
+                                                    <p>{elem.description}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
                         <MDBCardText className='btnContainer'>
                             <Button onClick={openCommentModal} variant="dark" size="sm">Comentar</Button>
                             {
@@ -126,6 +131,9 @@ function PostCard({ title, description, imageUrl, _id, owner, loadPosts, comment
                                 <EditPostForm closeModal={closeModal} loadPosts={loadPosts} title={title} description={description} imageUrl={imageUrl} id={_id} />
                             </Modal.Body>
                         </Modal>
+
+
+
                     </MDBCardBody>
                 </MDBCol>
             </MDBRow>

@@ -97,7 +97,7 @@ function ProfilePage() {
     return (
 
         !userProfile
-            ? <p>Loading....</p>
+            ? <p> 🅻🅾🅰🅳🅸🅽🅶....</p>
             :
             <Container>
                 <Row className=" profile">
