@@ -8,6 +8,7 @@ import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
 import './ProfilePage.css'
 import FriendsList from '../../components/FriendsList/FriendsList';
 import MyPostList from '../../components/MyPostList/MyPostList';
+import Loader from '../../components/Loader/Loader';
 
 function ProfilePage() {
 
@@ -97,7 +98,7 @@ function ProfilePage() {
     return (
 
         !userProfile
-            ? <p>Loading....</p>
+            ? <Loader />
             :
             <Container>
                 <Row className=" profile">
@@ -106,6 +107,8 @@ function ProfilePage() {
                         <br />
                         <br />
                         <img src={userProfile.imageUrl} alt="" />
+                        <br />
+                        <br />
                         <h4>{userProfile.name}</h4>
                         <p>{userProfile.bio}</p>
                         {
@@ -162,9 +165,11 @@ function ProfilePage() {
                         </div>
                     </Col>
                     <Link to="/post">
+                        <br />
                         <Button variant="">Publicaciones</Button>
                     </Link>
                 </Row>
+                <br />
                 <br />
                 <Row className='justify-content-center publi'>
                     <h4>Mis Publicaciones</h4>
@@ -180,6 +185,7 @@ function ProfilePage() {
 
                 </Row>
             </Container>
+
     )
 }
 

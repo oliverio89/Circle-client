@@ -4,7 +4,7 @@ import postService from "../../services/post.service"
 import { Row, Col } from "react-bootstrap"
 import { Nav } from "react-bootstrap"
 import { Link } from "react-router-dom"
-
+import './ListReportedPost.css'
 
 const ListReportedPost = () => {
 
@@ -26,8 +26,6 @@ const ListReportedPost = () => {
 
     let listReported = []
 
-
-    console.log("IMMMMMM", posts)
     posts.map(ele => {
         if (ele.reportes.length > 0) {
             listReported.push(ele)
@@ -39,21 +37,21 @@ const ListReportedPost = () => {
 
 
     return (
-        <>
+        <div className="containerReportes">
 
-            <h1>Listado de Posts reportados</h1>
+            <h1>🐇 𝐿𝒾𝓈𝓉𝒶𝒹  𝒹𝑒 𝒫🍪𝓈𝓉𝓈 𝓇𝑒𝓅🏵𝓇𝓉𝒶𝒹♡𝓈🐇</h1>
             {listReported.map(elem => {
                 return (
                     <Link to={`/detalles/${elem._id}`}>
                         <Nav.Link as="div">
-                            <p>{elem.title}-----❌{elem.reportes.length}</p>
+                            <p className="reportTitle">{elem.title}-----❌{elem.reportes.length}</p>
                         </Nav.Link>
                     </Link>
 
                 )
             })
             }
-        </>
+        </div>
     )
 
 }

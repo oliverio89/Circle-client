@@ -40,11 +40,11 @@ const Navigation = () => {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
+            <Container className='circle'>
                 <h2>Circle</h2>
                 <Link to="/" className='logopage'>
                     <Nav.Link as="div">
-                        <img src="https://res.cloudinary.com/dtcpa2jtc/image/upload/v1671028203/logo_en_naranja_arubcs.png" />
+                        <img src="https://res.cloudinary.com/dtcpa2jtc/image/upload/v1671101581/logo_naranja_80_cxoygh.png" />
                     </Nav.Link>
                 </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -59,7 +59,7 @@ const Navigation = () => {
                             {user ?
                                 <>
                                     <Link to="/post">
-                                        <Nav.Link as="div">Publicaciónes</Nav.Link>
+                                        <Nav.Link as="div">Publicaciones</Nav.Link>
                                     </Link>
                                     <Link to={`/profile/${user._id}`}>
                                         <Nav.Link as="div">{!user ? '' : user.username}</Nav.Link>
@@ -71,23 +71,24 @@ const Navigation = () => {
                                         </Link>
                                     }
 
-                                    <Nav.Link as="div" onClick={logout}>Cerrar sesión</Nav.Link>
+                                    <Nav.Link as="div" onClick={logout}>Cerrar Sesión</Nav.Link>
                                     <Link to="/map">
                                         <Nav.Link as="div">MAP</Nav.Link>
                                     </Link>
                                 </>
                                 :
                                 <>
-                                    <div>
-                                        <Button onClick={SignUp} variant="dark" size="sm">SignUp/login</Button>
+                                    <div className='con-btnStart'>
+                                        <Button onClick={SignUp} variant="dark btnStart" size="sm"> ♥𝓈𝓉𝒶𝓇𝓉♥</Button>
                                     </div>
                                     <Link to="/map">
                                         <Nav.Link as="div">MAP</Nav.Link>
                                     </Link>
 
                                     <Modal show={showModal} onHide={closeModal}>
-                                        <div>
+                                        <div className='btnSigLog'>
                                             <Button onClick={SignUp} variant="dark" size="sm">SignUp</Button>
+                                            🍬𝒸𝒾𝓇𝒸𝓁𝑒
                                             <Button onClick={LogIn} variant="dark" size="sm">LogIn</Button>
                                         </div>
                                         <Modal.Header closeButton>

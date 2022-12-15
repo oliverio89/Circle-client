@@ -8,7 +8,7 @@ const FriendsList = ({ dataFriend, loadUser }) => {
 
     return (
         !dataFriend
-            ? <p>Loading....</p>
+            ? <p> 🅻🅾🅰🅳🅸🅽🅶....</p>
             :
             <>
                 {

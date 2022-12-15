@@ -8,17 +8,18 @@ const MyPostList = ({ dataPost }) => {
 
     return (
         !dataPost
-            ? <p>Loading....</p>
+            ? <p> 🅻🅾🅰🅳🅸🅽🅶....</p>
             :
             <>
                 {
                     dataPost.map((data) => {
                         return (
-
-
                             <Col sm={3} key={data._id} >
-                                <h6>{data.title}</h6>
-                                <img src={data.imageUrl} style={{ width: '100%' }} alt='foto de la publicación' />
+                                <h5>{data.title}</h5>
+                                <Link to={`/detalles/${data._id}`}>
+                                    <img src={data.imageUrl} style={{ width: '100%' }} alt='foto de la publicación' />
+                                </Link>
+
                             </Col>
 
                         )
