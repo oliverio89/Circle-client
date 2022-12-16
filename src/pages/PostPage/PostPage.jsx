@@ -16,8 +16,8 @@ const PostListPage = () => {
 
     const [posts, setPosts] = useState(null)
     const [deviceLocation, setGeolocation] = useState({
-        lat: 43.374264641748034,
-        lng: - 5.85056436741788
+        lat: null,
+        lng: null
     })
 
     const [showModal, setShowModal] = useState(false)

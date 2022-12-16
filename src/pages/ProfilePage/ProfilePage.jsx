@@ -168,7 +168,7 @@ function ProfilePage() {
                     </Link>
                 </Row>
                 <br />
-                <Row className='justify-content-center publi'>
+                <Row className='justify-content-center publi2'>
                     <h4>Mis Publicaciones</h4>
 
                     <MyPostList dataPost={userProfile.createdPosts} />
